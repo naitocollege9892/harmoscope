@@ -12,7 +12,7 @@ self.addEventListener('fetch',e=>{
   if(u.origin!==scope.origin||!u.pathname.startsWith(scope.pathname))return;
   const rel=u.pathname.slice(scope.pathname.length);
   let key=null;
-  if(r.mode==='navigate'||rel===''||rel==='index.html')key='./';
+  if(rel===''||rel==='index.html')key='./'; // 本体だけ。同じ場所のほかのページ（accept-test.html など）はそのままネットから
   else if(rel==='manifest.webmanifest'||rel==='icon.png')key='./'+rel;
   if(!key)return;
   e.respondWith((async()=>{
