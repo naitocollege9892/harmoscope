@@ -1,0 +1,14 @@
+{
+  "name": "HarmoScope（ハモスコープ）",
+  "short_name": "HarmoScope",
+  "description": "弦楽器の音律・音程・和音を、耳と数字で学ぶ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {"src": "icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any"}
+  ]
+}
