@@ -6599,7 +6599,7 @@ body.score-focus #sv>.sv-bar{position:relative;top:auto}
   }
   function initDroneDrag(staff){
     staff.addEventListener('pointerdown',e=>{
-      if(e.button!==0||e.pointerType==='touch')return;
+      if(e.button!==0||(e.pointerType==='touch'&&!window.__k149t))return;
       const svg=staff.querySelector('svg');if(!svg)return;
       const hit=grabDroneNote(e,staff);
       if(!hit&&!inScaleBox(e,staff))return;
@@ -6638,7 +6638,7 @@ body.score-focus #sv>.sv-bar{position:relative;top:auto}
         if(chipMenuChosen){chipMenuChosen=false;chordInputFocus=null;renderChord()}
         return;
       }
-      if(e.button!==0||e.pointerType==='touch')return;
+      if(e.button!==0||(e.pointerType==='touch'&&!window.__k149t))return;
       const voice=grabStaffNote(e,staff,true),svg=staff.querySelector('svg');
       if(!voice){
         if(chordVoices.length&&!grabStaffNote(e,staff)&&inScaleBox(e,staff)){
@@ -9777,7 +9777,7 @@ body.score-focus #sv>.sv-bar{position:relative;top:auto}
     inner.addEventListener('mousedown',e=>{if(e.button===1)e.preventDefault()});
     inner.addEventListener('pointerdown',e=>{
       if(e.button===1){if(canPan()){startPan(e);e.preventDefault()}return}
-      if(e.button!==0||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey||!canPan())return;
+      if(e.button!==0||e.__k228||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey||!canPan())return;
       const ev={clientX:e.clientX,clientY:e.clientY,pointerId:e.pointerId};
       lp={x:e.clientX,y:e.clientY,t:setTimeout(()=>{
         if(!lp)return;lp=null;if(scoreDrag.moved)return;
@@ -11151,7 +11151,7 @@ body.score-focus #sv>.sv-bar{position:relative;top:auto}
     inner.addEventListener('mousedown',e=>{if(e.button===1)e.preventDefault()});
     inner.addEventListener('pointerdown',e=>{
       if(e.button===1){if(canPan()){startPan(e);e.preventDefault()}return}
-      if(e.button!==0||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey||!canPan())return;
+      if(e.button!==0||e.__k228||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey||!canPan())return;
       const ev={clientX:e.clientX,clientY:e.clientY,pointerId:e.pointerId};
       lp={x:e.clientX,y:e.clientY,t:setTimeout(()=>{
         if(!lp)return;lp=null;if(scoreDrag.moved)return;
@@ -11340,7 +11340,7 @@ body.score-focus #sv>.sv-bar{position:relative;top:auto}
     inner.addEventListener('mousedown',e=>{if(e.button===1)e.preventDefault()});
     inner.addEventListener('pointerdown',e=>{
       if(e.button===1){if(canPan()){startPan(e);e.preventDefault()}return}
-      if(e.button!==0||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey||!SV.pages)return;
+      if(e.button!==0||e.__k228||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey||!SV.pages)return;
       const ev={clientX:e.clientX,clientY:e.clientY,pointerId:e.pointerId};
       lp={x:e.clientX,y:e.clientY,t:setTimeout(()=>{
         if(!lp)return;lp=null;if(scoreDrag.moved)return;
@@ -12021,7 +12021,7 @@ body.score-focus #sv>.sv-bar{position:relative;top:auto}
     inner.addEventListener('mousedown',e=>{if(e.button===1)e.preventDefault()});
     inner.addEventListener('pointerdown',e=>{
       if(e.button===1){if(canPan()){startPan(e);e.preventDefault()}return}
-      if(e.button!==0||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey||!SV.pages)return;
+      if(e.button!==0||e.__k228||e.shiftKey||e.altKey||e.ctrlKey||e.metaKey||!SV.pages)return;
       const ev={clientX:e.clientX,clientY:e.clientY,pointerId:e.pointerId};
       lp={x:e.clientX,y:e.clientY,t:setTimeout(()=>{
         if(!lp)return;const at=lp;lp=null;if(scoreDrag.moved)return;
@@ -17699,6 +17699,818 @@ var K217={};
     const mark=()=>{const bs=[...b.querySelectorAll('button')];b.classList.toggle('k224-only-close',bs.length===1&&bs[0].textContent==='閉じる')};
     new MutationObserver(mark).observe(b,{childList:true});
     note.addEventListener('click',e=>{if(!e.target.closest('button'))note.hidden=true});
+  })();
+
+  /* v148 改225：iPad段階2（上の帯）。指で操作する端末（主な入力が指、またはiPad）のときだけ効かせる。PCは変えない。
+     (1) タブの文字の行の高さを、タブの箱の高さにそろえる（iPadで文字が箱の上に寄って青い線の下に隠れたため。WebKitの原因は未確認）。
+     (2) 1行に収まる幅（帯の高さ48px、PCと同じ）（iPadの横向きなど）では帯を1行にする：楽器名は改189の決まりで収まる形、「？ 使い方」は「？」、A4の「Hz」を消し、すきまを詰める。
+     (3) 1行に収まらない幅（iPadの縦向きなど）では、楽器・音律・A4・音色・既定・テーマを「共通の設定」ボタン1つにまとめ、押すと一覧を開く。
+         一覧は指向け：楽器は4つ並び、A4は −／＋、音律と音色は端末の選ぶ画面、テーマは色の丸、押せる所は高さ44px。後ろを少し暗くし、外か×で閉じる。
+         このときロゴを約88%にして、タブとの間を空ける。
+     (4) ↶↷ と ？ の記号を大きくする（↶↷ 22px、？ 20px）。
+     どちらの形にするかは、1行の形を実際に並べてみて、はみ出すかで決める（文字の幅が端末で違っても崩れないように）。 */
+  (()=>{
+    const touch=(()=>{try{return matchMedia('(pointer:coarse)').matches||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform||''))}catch(e){return false}})();
+    if(!touch)return;
+    const B=document.body,bar=document.querySelector('.appbar'),g=bar&&bar.querySelector('.global');
+    if(!bar||!g)return;
+    B.classList.add('k225-touch');
+    const css=document.createElement('style');css.id='k225-style';
+    css.textContent=`
+body.k225-touch .appbar .mode-tab{line-height:var(--k225-th,48px)!important}
+body.k225-touch .appbar .button.history-btn{font-size:22px!important;font-weight:700!important;line-height:1!important}
+body.k225-touch .appbar .button.help-open{font-size:20px!important;font-weight:800!important}
+body.k225-touch.k225-row .appbar .button.help-open,body.k225-touch.k225-menu .appbar .button.help-open{min-width:40px;padding-left:10px!important;padding-right:10px!important}
+#k225SetOpen,#k225SetPanel,#k225Dim{display:none}
+/* (2) 1行 */
+body.k225-row:not(.bar-compact) .appbar{flex-wrap:nowrap!important;height:48px!important;min-height:0!important;padding-top:0!important;padding-bottom:0!important;gap:10px!important}
+body.k225-row:not(.bar-compact) .appbar .global{min-width:0;flex:0 1 auto;margin-left:auto!important;gap:3px!important}
+body.k225-row .appbar .pick-a4>span{display:none}
+body.k225-row:not(.bar-compact) .appbar .global>*,body.k225-row:not(.bar-compact) .appbar .set-group>*,body.k225-row:not(.bar-compact) .appbar .set-group{flex-shrink:0!important}
+body.k225-row:not(.bar-compact) .appbar .brand,body.k225-row:not(.bar-compact) .appbar .mode-tabs{flex-shrink:0!important}
+/* (3) 設定ボタン */
+body.k225-menu:not(.bar-compact) .appbar{flex-wrap:nowrap!important;height:60px!important;min-height:0!important;padding:0 14px!important;gap:6px!important}
+body.k225-menu:not(.bar-compact) .appbar .global{flex:none;margin-left:auto!important;gap:6px!important;height:44px}
+body.k225-menu:not(.bar-compact) .appbar .global>.set-group,body.k225-menu:not(.bar-compact) .appbar .global>.pick-theme{display:none!important}
+body.k225-menu:not(.bar-compact) .appbar .button{height:44px!important;min-height:44px!important}
+body.k225-menu:not(.bar-compact) .appbar .history-btn{min-width:40px!important}
+body.k225-menu:not(.bar-compact) .appbar .history-tools{gap:4px!important}
+body.k225-menu:not(.bar-compact) .appbar .mode-tab{padding:0 9px!important;height:60px!important}
+body.k225-menu:not(.bar-compact) .appbar .mode-tabs{align-self:stretch!important}
+body.k225-menu:not(.bar-compact) .appbar .brand{gap:5px!important;margin-right:12px!important}
+body.k225-menu:not(.bar-compact) .appbar .brand-text{display:grid!important;width:100px!important}
+body.k225-menu:not(.bar-compact) .brand-word{height:16px!important}
+body.k225-menu:not(.bar-compact) .brand-kana,body.k225-menu:not(.bar-compact) .brand-en{font-size:7px!important}
+body.k225-menu:not(.bar-compact) .brand-mark{width:32px!important;height:32px!important}
+body.k225-menu.k225-nologo:not(.bar-compact) .appbar .brand-text{display:none!important}
+body.k225-menu:not(.bar-compact) #k225SetOpen{display:flex}
+#k225SetOpen{height:44px;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 30px 0 12px;border:1px solid #a3b4b1;border-radius:9px;background:#fff;
+  box-shadow:0 1px 2px rgba(60,48,19,.2);position:relative;font:inherit;color:#1f3a36;cursor:pointer;flex:none}
+#k225SetOpen small{font-size:10px;color:#5c6b68;font-weight:700;line-height:1.1}
+#k225SetOpen b{font-size:13px;line-height:1.3;white-space:nowrap;font-weight:700}
+#k225SetOpen b span{color:#9a5a12}
+#k225SetOpen::after{content:"";position:absolute;right:11px;top:17px;width:7px;height:7px;border-right:1.6px solid #555;border-bottom:1.6px solid #555;transform:rotate(45deg)}
+#k225SetOpen[aria-expanded=true]{border-color:#2f8f7f;box-shadow:0 0 0 3px #d5ece7}
+body.k225-open #k225Dim{display:block;position:fixed;left:0;right:0;bottom:0;background:rgba(20,40,38,.14);z-index:498}
+body.k225-open #k225SetPanel{display:block}
+#k225SetPanel{position:fixed;z-index:499;width:430px;max-width:calc(100vw - 28px);box-sizing:border-box;background:#fff;border:1px solid #c9d3d1;border-radius:12px;
+  box-shadow:0 10px 30px rgba(20,40,38,.22);padding:0 0 14px;color:#1f3a36;-webkit-user-select:none;user-select:none;max-height:calc(100vh - 80px);overflow:auto}
+#k225SetPanel .k225-arrow{position:absolute;top:-8px;width:14px;height:14px;background:#fff;border-left:1px solid #c9d3d1;border-top:1px solid #c9d3d1;transform:rotate(45deg)}
+#k225SetPanel .hd{display:flex;align-items:center;justify-content:space-between;padding:6px 6px 4px 16px;border-bottom:1px solid #edf1f0}
+#k225SetPanel .hd b{font-size:14px}#k225SetPanel .hd small{font-size:11.5px;color:#6b7876;font-weight:600;margin-left:6px}
+#k225SetPanel .x{width:44px;height:44px;border:0;background:none;font-size:22px;color:#5c6b68;cursor:pointer}
+#k225SetPanel .sec{padding:10px 16px 0}
+#k225SetPanel .lab{font-size:12px;font-weight:700;color:#5c6b68;margin-bottom:6px;display:flex;justify-content:space-between}
+#k225SetPanel .lab span{font-weight:600;color:#8a9694}
+#k225SetPanel .seg{display:flex;border:1px solid #b9c4c2;border-radius:10px;overflow:hidden}
+#k225SetPanel .seg button{flex:1;height:44px;border:0;border-left:1px solid #d5dcdb;background:#fff;font:inherit;font-weight:700;font-size:13.5px;color:#3d4a48;cursor:pointer;padding:0 2px}
+#k225SetPanel .seg button:first-child{border-left:0}
+#k225SetPanel .seg button.on{background:#8a5520;color:#fff}
+#k225SetPanel .dd{position:relative}
+#k225SetPanel .dd select{width:100%;height:44px;border:1px solid #a3b4b1;border-radius:10px;padding:0 34px 0 14px;font:inherit;font-weight:700;font-size:14px;color:#1f3a36;
+  background:#fff!important;background-image:none!important;box-shadow:0 1px 2px rgba(60,48,19,.15);-webkit-appearance:none!important;appearance:none!important}
+#k225SetPanel .row2{display:flex;gap:12px}#k225SetPanel .row2>div{flex:1;min-width:0}
+#k225SetPanel .step{display:flex;align-items:center;gap:8px}
+#k225SetPanel .step button{width:44px;height:44px;flex:none;border:1px solid #a3b4b1;border-radius:10px;background:#fff;font-size:20px;font-weight:700;color:#1f3a36;box-shadow:0 1px 2px rgba(60,48,19,.15);cursor:pointer}
+#k225SetPanel .step label{flex:1;min-width:0;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #c9d3d1;border-radius:10px;font-size:12px;font-weight:600;color:#6b7876;gap:2px}
+#k225SetPanel .step input{width:46px;border:0;background:none;font:inherit;font-size:17px;font-weight:800;color:#1f3a36;text-align:right;padding:0;-moz-appearance:textfield}
+#k225SetPanel .step input::-webkit-inner-spin-button,#k225SetPanel .step input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+#k225SetPanel .chips{display:flex;gap:0;justify-content:space-between}
+#k225SetPanel .chips button{width:44px;height:44px;border:0;padding:3px;background:none;border-radius:50%;cursor:pointer}
+#k225SetPanel .chips button i{display:block;width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,0,0,.18);box-sizing:border-box}
+#k225SetPanel .chips button.on i{outline:3px solid #2f8f7f;outline-offset:2px}
+#k225SetPanel .def{padding:14px 16px 0;margin-top:12px;border-top:1px solid #edf1f0;display:flex;gap:8px}
+#k225SetPanel .def button{flex:1;height:44px;border:1px solid #a3b4b1;border-radius:10px;background:#fff;font:inherit;font-weight:700;font-size:13px;color:#1f3a36;box-shadow:0 1px 2px rgba(60,48,19,.15);cursor:pointer}
+#k225SetPanel .def button:disabled{color:#9aa6a4;box-shadow:none}
+#k225SetPanel .st{margin:8px 16px 0;font-size:11.5px;color:#6b7876;line-height:1.5}
+#k225SetPanel button:active,#k225SetOpen:active{filter:brightness(.94)}`;
+    document.head.appendChild(css);
+    const $=id=>document.getElementById(id);
+    const help=$('helpOpen'),helpText=help?help.textContent:'';
+    // ---- the button ----
+    const btn=document.createElement('button');btn.type='button';btn.id='k225SetOpen';btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','共通の設定を開く');
+    g.insertBefore(btn,g.firstChild);
+    const dim=document.createElement('div');dim.id='k225Dim';
+    const pn=document.createElement('div');pn.id='k225SetPanel';pn.setAttribute('role','dialog');pn.setAttribute('aria-label','共通の設定');
+    document.body.append(dim,pn);
+    const IS=()=>$('droneInstrument');
+    const curInst=()=>{try{return k168Inst()}catch(e){const s=IS();return s?s.value:'vn'}};
+    const nameOf=id=>{try{return k168Name(id)}catch(e){return id}};
+    const ABB=(()=>{try{return K168_AB}catch(e){return {vn:'Vn',va:'Va',vc:'Vc',cb:'Cb'}}})();
+    function paintBtn(){btn.innerHTML='<small>共通の設定</small><b>楽器 <span>'+(ABB[curInst()]||nameOf(curInst()))+'</span></b>'}
+    // ---- the panel ----
+    function themes(){const tp=$('themePanel');return tp?[...tp.querySelectorAll('button')]:[]}
+    function build(){
+      const insts=Object.keys(ABB);
+      const tune=$('tuningSelect'),tim=$('commonTimbre'),a4=$('a4');
+      const opts=s=>s?[...s.options].map(o=>'<option value="'+o.value+'">'+o.textContent+'</option>').join(''):'';
+      pn.innerHTML='<span class="k225-arrow"></span><div class="hd"><span><b>共通の設定</b><small>すべてのタブに効きます</small></span><button type="button" class="x" aria-label="閉じる">×</button></div>'
+        +'<div class="sec"><div class="lab">楽器</div><div class="seg" role="radiogroup" aria-label="楽器">'+insts.map(id=>'<button type="button" data-i="'+id+'">'+nameOf(id)+'</button>').join('')+'</div></div>'
+        +'<div class="sec"><div class="lab">音律</div><div class="dd"><select data-s="tune" aria-label="音律">'+opts(tune)+'</select></div></div>'
+        +'<div class="sec row2"><div><div class="lab">A4の高さ</div><div class="step"><button type="button" data-a="-1" aria-label="A4を1Hz下げる">−</button><label><input type="number" inputmode="numeric" min="'+(a4?a4.min:400)+'" max="'+(a4?a4.max:480)+'" step="1" aria-label="A4基準ピッチ">Hz</label><button type="button" data-a="1" aria-label="A4を1Hz上げる">＋</button></div></div>'
+        +'<div><div class="lab">音色</div><div class="dd"><select data-s="tim" aria-label="音色">'+opts(tim)+'</select></div></div></div>'
+        +'<div class="sec"><div class="lab">テーマ<span class="k225-tn"></span></div><div class="chips">'+themes().map((b,i)=>{const d=b.querySelector('.theme-chip'),n=b.querySelector('b');return '<button type="button" data-t="'+i+'" aria-label="テーマ：'+(n?n.textContent:'')+'"><i style="background:'+(d?d.style.background:'#ccc')+'"></i></button>'}).join('')+'</div></div>'
+        +'<div class="def"><button type="button" data-d="save">今の設定を既定に保存</button><button type="button" data-d="restore">保存した既定に戻す</button></div><p class="st" role="status" aria-live="polite"></p>';
+      pn.querySelector('.x').addEventListener('click',()=>close(true));
+      for(const b of pn.querySelectorAll('.seg button'))b.addEventListener('click',()=>{const instSel=IS();if(!instSel||instSel.value===b.dataset.i)return;instSel.value=b.dataset.i;instSel.dispatchEvent(new Event('change',{bubbles:true}));sync()});
+      const sTune=pn.querySelector('[data-s=tune]'),sTim=pn.querySelector('[data-s=tim]');
+      const pass=(src,dst)=>src.addEventListener('change',()=>{if(!dst||dst.value===src.value)return;dst.value=src.value;dst.dispatchEvent(new Event('change'));try{syncPickLabels()}catch(e){}sync()});
+      pass(sTune,tune);pass(sTim,tim);
+      const num=pn.querySelector('.step input');
+      const setA4=v=>{if(!a4)return;const lo=+a4.min||400,hi=+a4.max||480;v=Math.max(lo,Math.min(hi,Math.round(v)));if(!isFinite(v))return sync();
+        if(String(v)!==a4.value){a4.value=String(v);a4.dispatchEvent(new Event('input',{bubbles:true}));a4.dispatchEvent(new Event('change',{bubbles:true}))}sync()};
+      for(const b of pn.querySelectorAll('.step button'))b.addEventListener('click',()=>setA4((+a4.value||440)+Number(b.dataset.a)));
+      num.addEventListener('change',()=>setA4(+num.value));
+      num.addEventListener('keydown',e=>{if(e.key==='Enter')num.blur()});
+      for(const b of pn.querySelectorAll('.chips button'))b.addEventListener('click',()=>{const t=themes()[+b.dataset.t];if(t)t.click();sync()});
+      for(const b of pn.querySelectorAll('.def button'))b.addEventListener('click',()=>{const t=$(b.dataset.d==='save'?'saveCommonDefaults':'restoreCommonDefaults');if(t&&!t.disabled)t.click();setTimeout(sync,0)});
+    }
+    function sync(){
+      paintBtn();if(!pn.firstChild)return;
+      const id=curInst();for(const b of pn.querySelectorAll('.seg button')){const on=b.dataset.i===id;b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on))}
+      const tune=$('tuningSelect'),tim=$('commonTimbre'),a4=$('a4');
+      const sT=pn.querySelector('[data-s=tune]'),sM=pn.querySelector('[data-s=tim]'),num=pn.querySelector('.step input');
+      if(sT&&tune)sT.value=tune.value;if(sM&&tim)sM.value=tim.value;if(num&&a4&&document.activeElement!==num)num.value=a4.value;
+      const ts=themes(),cur=ts.findIndex(b=>b.classList.contains('is-current'));
+      pn.querySelectorAll('.chips button').forEach((b,i)=>{b.classList.toggle('on',i===cur);b.setAttribute('aria-pressed',String(i===cur))});
+      const tn=pn.querySelector('.k225-tn'),n=ts[cur]&&ts[cur].querySelector('b');if(tn)tn.textContent=n?n.textContent:'';
+      const rs=$('restoreCommonDefaults'),pr=pn.querySelector('[data-d=restore]');if(rs&&pr)pr.disabled=rs.disabled;
+      const st=$('commonDefaultsStatus'),ps=pn.querySelector('.st');if(ps)ps.textContent=st?st.textContent:'';
+    }
+    function place(){
+      const r=btn.getBoundingClientRect(),w=pn.offsetWidth;
+      const left=Math.max(14,Math.min(innerWidth-14-w,r.right-w));
+      pn.style.left=left+'px';pn.style.top=(r.bottom+10)+'px';dim.style.top=bar.getBoundingClientRect().bottom+'px';
+      const ar=pn.querySelector('.k225-arrow');if(ar)ar.style.left=Math.round(r.left+r.width/2-left-7)+'px';
+    }
+    function open(){
+      try{for(const [b,p] of popups)if(!p.hidden)b.click()}catch(e){}
+      build();sync();B.classList.add('k225-open');btn.setAttribute('aria-expanded','true');place();
+    }
+    function close(focus){if(!B.classList.contains('k225-open'))return;B.classList.remove('k225-open');btn.setAttribute('aria-expanded','false');if(focus)btn.focus({preventScroll:true})}
+    btn.addEventListener('click',()=>{B.classList.contains('k225-open')?close():open()});
+    dim.addEventListener('pointerdown',e=>{e.preventDefault();close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&B.classList.contains('k225-open'))close(true)});
+    
+    for(const id of ['tuningSelect','commonTimbre','a4']){const e=$(id);if(e)e.addEventListener('change',()=>setTimeout(sync,0))}
+    // ---- which form: one row, or the button ----
+    let busy=false;
+    function tabHeight(){const t=bar.querySelector('.mode-tab');if(t)bar.style.setProperty('--k225-th',t.getBoundingClientRect().height+'px')}
+    function overflow(){
+      const tg=$('barToggle'),r=tg&&tg.getBoundingClientRect();
+      if(document.documentElement.scrollWidth>innerWidth+1)return true;
+      if(r&&r.right>innerWidth-4)return true;
+      if(g.scrollWidth>g.clientWidth+1)return true;
+      const tabs=bar.querySelector('.mode-tabs');if(tabs&&tabs.getBoundingClientRect().right>g.getBoundingClientRect().left+1)return true;
+      return false;
+    }
+    const refit=()=>{busy=true;try{dispatchEvent(new Event('resize'))}finally{busy=false}};
+    const frame=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+    async function decide(){
+      if(B.classList.contains('bar-compact')){B.classList.remove('k225-row','k225-menu','k225-nologo');close();if(help)help.textContent=helpText;await frame();tabHeight();return}
+      if(help){help.textContent='？';help.setAttribute('aria-label','使い方')}
+      B.classList.remove('k225-menu','k225-nologo');B.classList.add('k225-row');refit();await frame();
+      if(overflow()){
+        B.classList.remove('k225-row');B.classList.add('k225-menu');await frame();
+        if(overflow()){B.classList.add('k225-nologo');await frame()}
+      }else close();
+      tabHeight();paintBtn();if(B.classList.contains('k225-open'))place();
+    }
+    let q=0;addEventListener('resize',()=>{if(busy)return;clearTimeout(q);q=setTimeout(decide,120)});
+    let compact=B.classList.contains('bar-compact');
+    new MutationObserver(()=>{const c=B.classList.contains('bar-compact');if(c===compact)return;compact=c;clearTimeout(q);q=setTimeout(decide,30)}).observe(B,{attributes:true,attributeFilter:['class']});
+    document.addEventListener('change',e=>{if(e.target&&e.target.id==='droneInstrument'){setTimeout(sync,0);clearTimeout(q);q=setTimeout(decide,60)}},true);
+    paintBtn();
+    setTimeout(decide,200);
+  })();
+
+/* v148 改226：アプリの中に版の番号を出す。
+   版を上げるときは、下の HARMOSCOPE_VERSION の1行だけを書き換える。
+   (1) 使い方（？）の見出しの右に版の札（PC・iPadの横・縦すべて）。
+   (2) 縦の帯の「共通の設定」一覧（改225）のいちばん下に「この端末で動いている版」。 */
+var HARMOSCOPE_VERSION='v149 改3';
+(function k226Version(){
+  try{
+    const css=document.createElement('style');css.id='k226-style';
+    css.textContent=`#helpTitle .k226-ver{display:inline-block;margin-left:12px;vertical-align:3px;font-size:12.5px;font-weight:700;line-height:1.3;letter-spacing:.02em;white-space:nowrap;padding:3px 10px;border-radius:999px;color:#2f6f63;background:#e4f0ed;border:1px solid #c3dbd5}
+#k225SetPanel .k226-ver{margin:12px 16px 0;padding-top:10px;border-top:1px solid #edf1f0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12px;color:#6b7876;font-weight:600}
+#k225SetPanel .k226-ver b{color:#1f3a36;font-weight:800;font-size:12.5px;white-space:nowrap}`;
+    document.head.appendChild(css);
+    const t=document.getElementById('helpTitle');
+    if(t&&!t.querySelector('.k226-ver')){const s=document.createElement('span');s.className='k226-ver';s.textContent=HARMOSCOPE_VERSION;s.setAttribute('aria-label','この版：'+HARMOSCOPE_VERSION);t.appendChild(s)}
+    const pn=document.getElementById('k225SetPanel');
+    if(pn){
+      const add=()=>{if(!pn.firstChild||pn.querySelector('.k226-ver'))return;
+        const d=document.createElement('div');d.className='k226-ver';d.innerHTML='<span>この端末で動いている版</span><b></b>';d.querySelector('b').textContent='HarmoScope '+HARMOSCOPE_VERSION;pn.appendChild(d)};
+      new MutationObserver(add).observe(pn,{childList:true});add();
+    }
+  }catch(e){console.warn('k226',e)}
+})();
+/* v148 改227：iPad段階3の①。指で操作する端末（改225と同じ判定）のときだけ効かせる。PCは変えない。
+   (1) 説明カード：長押し0.5秒で出す（指で隠れない側：上の帯では部品の下、ほかは指の上）。指を離しても、次にどこかを触るまで残す。
+       長押しでは押した物を動かさない（そのあとの click を止める）。指で触ったときの mouseover ではカードを出さない。
+       スコアの楽譜の上（#svScroll）は段階3の②で別に扱うので、ここでは長押しを取らない。
+   (2) カーソルを合わせたときの色（:hover）を、指のときは効かせない（CSSの :hover を含む指定をまとめて外す。(hover:hover) の中はもともと効かない）。
+       代わりに、押している間だけ地を少し濃くする（離して0.12秒で戻す。指が動いてスクロールになったらすぐ戻す）。
+   (3) 押す所の当たり：見た目は変えず、透明な当たりを足して44pxに広げる。隣の押せる物とぶつかる側は、すきまの半分まで（最低36pxをめざすが、隣の上には出さない）。
+   (4) 使い方の「はじめに」に「指で使うとき」の項を足す（指のときだけ）。 */
+  (()=>{
+    const touch=(()=>{try{return matchMedia('(pointer:coarse)').matches||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform||''))}catch(e){return false}})();
+    if(!touch)return;
+    const B=document.body;B.classList.add('k227-touch');
+    const css=document.createElement('style');css.id='k227-style';
+    css.textContent=`
+body.k227-touch :is([title],[data-tip],button,a[href],label,summary,[role=button],[role=tab]),
+body.k227-touch :is([title],[data-tip],button,a[href],label,summary,[role=button],[role=tab]) *{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+body.k227-touch :is(input,textarea,[contenteditable=true]){-webkit-user-select:auto;user-select:auto}
+body.k227-touch .k227-down{box-shadow:inset 0 0 0 999px rgba(20,50,45,.09)!important}
+body.k227-touch .k227-rel{position:relative}
+body.k227-touch .k227-ha::after,body.k227-touch .k227-hb::before{content:'';position:absolute;top:calc(-1px * var(--k227t,0));right:calc(-1px * var(--k227r,0));bottom:calc(-1px * var(--k227b,0));left:calc(-1px * var(--k227l,0));background:transparent;pointer-events:auto}
+#help-ch0 .k227-help p+p{margin-top:4px}`;
+    document.head.appendChild(css);
+
+    /* ---------- (2) :hover を外す ---------- */
+    const HOVER_MQ=/\(\s*(any-)?hover\s*:\s*hover\s*\)/;
+    // 一番外のカンマで分ける（:is(a,b) の中は分けない）
+    const split=s=>{const out=[];let d=0,st=0;for(let i=0;i<s.length;i++){const c=s[i];if(c==='('||c==='[')d++;else if(c===')'||c===']')d--;else if(c===','&&d===0){out.push(s.slice(st,i));st=i+1}}out.push(s.slice(st));return out.map(x=>x.trim()).filter(Boolean)};
+    let nDrop=0,nEdit=0;
+    const fixList=list=>{
+      for(let i=list.cssRules.length-1;i>=0;i--){
+        const r=list.cssRules[i];
+        if(r.type===1){ // style rule
+          const s=r.selectorText;if(!s||s.indexOf(':hover')<0)continue;
+          // :not(:hover) は「乗っていない」＝指ではいつもその状態
+          const keep=split(s).map(p=>p.replace(/:not\(\s*:hover\s*\)/g,'')).filter(p=>p.indexOf(':hover')<0).map(p=>p===''?'*':p);
+          const body=r.style.cssText;
+          try{list.deleteRule(i);if(keep.length&&body){list.insertRule(keep.join(',')+'{'+body+'}',i);nEdit++}else nDrop++}catch(e){}
+        }else if(r.cssRules){
+          if(r.type===4&&HOVER_MQ.test(r.conditionText||(r.media&&r.media.mediaText)||''))continue;
+          try{fixList(r)}catch(e){}
+        }
+      }
+    };
+    const done=new WeakSet();
+    const fixAll=()=>{for(const sh of document.styleSheets){let rules;try{rules=sh.cssRules}catch(e){continue}if(!rules)continue;
+      const owner=sh.ownerNode;const len=owner&&owner.textContent?owner.textContent.length:0;
+      if(done.has(sh)&&sh.__k227len===len)continue;try{fixList(sh)}catch(e){}done.add(sh);sh.__k227len=len}};
+    fixAll();
+    {let q=0;new MutationObserver(rs=>{if(!rs.some(r=>[...r.addedNodes].some(n=>n.nodeName==='STYLE'||n.nodeName==='LINK')||(r.target&&r.target.nodeName==='STYLE')))return;clearTimeout(q);q=setTimeout(fixAll,30)})
+      .observe(document.documentElement,{childList:true,subtree:true,characterData:true})}
+    window.__k227Hover=()=>({drop:nDrop,edit:nEdit});
+
+    /* ---------- (2) 押している間の色 ---------- */
+    const PRESS='button,a[href],[role=button],[role=tab],[role=radio],[role=option],[role=menuitem],[role=switch],label,summary,select,.k225-seg';
+    let down=null,downT=0,dx=0,dy=0,pid=null;
+    const unpress=(now)=>{const el=down;down=null;if(!el)return;const w=now?0:Math.max(0,120-(performance.now()-downT));setTimeout(()=>el.classList.remove('k227-down'),w)};
+
+    /* ---------- (1) 長押しの説明カード ---------- */
+    const LP_MS=500,MOVE=10;
+    let lpT=0,lpEl=null,lpShown=false,eatClick=0;
+    const tipTarget=t=>{if(!t||!t.closest)return null;if(t.closest('#svScroll'))return null;k148Svg(t);return t.closest('[title],[data-tip]')};
+    const place=(el,x,y)=>{const box=TIP.box;if(!box||box.hidden)return;const r=el.getBoundingClientRect(),bw=box.offsetWidth,bh=box.offsetHeight,M=8;
+      let left=Math.min(innerWidth-bw-M,Math.max(M,x-bw/2)),top;
+      if(el.closest('header,.appbar,#k225SetPanel')){top=r.bottom+10;if(top+bh>innerHeight-M)top=Math.max(M,y-40-bh)}
+      else{top=Math.min(y,r.top)-14-bh;if(top<M)top=Math.min(innerHeight-bh-M,Math.max(r.bottom,y+40)+10)}
+      box.style.left=left+'px';box.style.top=Math.max(M,top)+'px'};
+    const lpCancel=()=>{clearTimeout(lpT);lpT=0;lpEl=null};
+    const hideLp=()=>{if(lpShown){lpShown=false;tipHide()}};
+    window.addEventListener('pointerdown',e=>{
+      if(e.pointerType!=='touch'){return}
+      hideLp();
+      if(!e.isPrimary){lpCancel();unpress(true);return}
+      pid=e.pointerId;dx=e.clientX;dy=e.clientY;
+      // 押している間の色
+      const p=e.target.closest&&e.target.closest(PRESS);
+      if(p&&!p.disabled){const r=p.getBoundingClientRect();if(r.width<600&&r.height<240){down=p;downT=performance.now();p.classList.add('k227-down')}}
+      // 長押し
+      lpCancel();const el=tipTarget(e.target);if(!el)return;lpEl=el;
+      const x=e.clientX,y=e.clientY;
+      lpT=setTimeout(()=>{lpT=0;if(lpEl!==el||!el.isConnected)return;
+        k148Take(el);if(!tipText(el)){k148Give(null);return}
+        tipHide();TIP.el=el;TIP.mx=null;TIP.my=null;tipShow(el);
+        if(!TIP.box||TIP.box.hidden)return;
+        place(el,x,y);lpShown=true;eatClick=performance.now();unpress(true);
+        try{el.dispatchEvent(new CustomEvent('k227-tip',{bubbles:true}))}catch(err){}
+      },LP_MS);
+    },true);
+    window.addEventListener('pointermove',e=>{
+      if(e.pointerType!=='touch'||e.pointerId!==pid)return;
+      if(Math.abs(e.clientX-dx)>MOVE||Math.abs(e.clientY-dy)>MOVE){lpCancel();unpress(true)}
+    },{capture:true,passive:true});
+    const up=e=>{if(e.pointerType!=='touch'||e.pointerId!==pid)return;lpCancel();unpress(e.type==='pointercancel')};
+    window.addEventListener('pointerup',up,true);window.addEventListener('pointercancel',up,true);
+    window.addEventListener('scroll',()=>{lpCancel();unpress(true)},{capture:true,passive:true});
+    // 長押しのあとの click・右クリックの一覧は止める（押した物を動かさない）
+    const eat=e=>{if(eatClick&&performance.now()-eatClick<1500){e.preventDefault();e.stopImmediatePropagation();if(e.type==='click')eatClick=0}};
+    window.addEventListener('click',eat,true);
+    window.addEventListener('contextmenu',e=>{if(lpEl||lpShown||(eatClick&&performance.now()-eatClick<1500)){e.preventDefault()}},true);
+    // 指で触ったときに来る mouseover ではカードを出さない（改148の 0.7秒のタイマーを止める）
+    let lastTouch=0;
+    window.addEventListener('touchstart',()=>{lastTouch=performance.now()},{capture:true,passive:true});
+    window.addEventListener('touchend',()=>{lastTouch=performance.now()},{capture:true,passive:true});
+    const fromTouch=()=>performance.now()-lastTouch<1000;
+    window.addEventListener('mouseover',()=>{if(fromTouch()&&!lpShown){clearTimeout(TIP.timer);TIP.el=null}},false);
+    // 長押しで出したカードを、指から来る mouseover・mouseout・mousedown（改148 ではカードを消す）で消さない
+    for(const ev of ['mouseover','mouseout','mousedown'])window.addEventListener(ev,e=>{if(lpShown&&fromTouch()){e.stopImmediatePropagation();if(e.type==='mousedown')e.preventDefault()}},true); // mousedown の既定（ほかの物のフォーカスが外れる）でもカードが消えるので止める
+
+    /* ---------- (3) 押す所の当たりを広げる ---------- */
+    const HIT='button,a[href],[role=button],[role=tab],[role=radio],[role=option],[role=menuitem],[role=switch],summary,label';
+    const OBST=HIT+',input:not([type=hidden]),select,textarea';
+    const vis=el=>{if(!el.getClientRects().length)return false;const r=el.getBoundingClientRect();return r.width>0&&r.height>0};
+    const clear=el=>{el.classList.remove('k227-ha','k227-hb','k227-rel');for(const k of ['--k227t','--k227r','--k227b','--k227l'])el.style.removeProperty(k)};
+    let applied=new Set();
+    // 収める外枠：画面の横幅、いちばん近いスクロールする（または切る）枠の中身、上の帯の中では親の箱
+    const box=el=>{const o={l:0,r:document.documentElement.clientWidth,t:-1e9,b:1e9};
+      const cut=(q)=>{o.l=Math.max(o.l,q.l);o.r=Math.min(o.r,q.r);o.t=Math.max(o.t,q.t);o.b=Math.min(o.b,q.b)};
+      const p=el.parentElement;
+      if(p&&el.closest('header,.appbar')){const q=p.getBoundingClientRect();cut({l:q.left,r:q.right,t:q.top,b:q.bottom})}
+      for(let a=p;a&&a!==document.body&&a!==document.documentElement;a=a.parentElement){
+        const cs=getComputedStyle(a);if(cs.overflowX==='visible'&&cs.overflowY==='visible')continue;
+        const q=a.getBoundingClientRect(),L=q.left+a.clientLeft-a.scrollLeft,T=q.top+a.clientTop-a.scrollTop;
+        cut({l:L,r:L+Math.max(a.scrollWidth,a.clientWidth),t:T,b:T+Math.max(a.scrollHeight,a.clientHeight)});break}
+      return o};
+    const hitPass=()=>{
+      const all=[...document.querySelectorAll(OBST)].filter(el=>!el.closest('#svScroll svg, [hidden]')&&vis(el));
+      const rects=new Map();for(const el of all)rects.set(el,el.getBoundingClientRect());
+      const next=new Set();
+      for(const el of all){
+        if(!el.matches(HIT)||el.matches('label')&&!el.querySelector('input')&&!el.matches('[role]'))continue;
+        const r=rects.get(el);if(r.width>=44&&r.height>=44)continue;
+        const cs=getComputedStyle(el);
+        if(cs.display==='contents'||cs.overflow!=='visible')continue;
+        if(el.closest('svg'))continue;
+        let kind=el.dataset.k227h;
+        if(!kind){if(getComputedStyle(el,'::after').content==='none')kind='a';else if(getComputedStyle(el,'::before').content==='none')kind='b';else continue;el.dataset.k227h=kind}
+        // 4つの向きの、隣の押せる物までのすきま
+        let gl=1e9,gr=1e9,gt=1e9,gb=1e9;
+        for(const o of all){if(o===el||o.contains(el)||el.contains(o))continue;const q=rects.get(o);
+          const vOv=q.top<r.bottom+22&&q.bottom>r.top-22,hOv=q.left<r.right+22&&q.right>r.left-22;
+          if(vOv&&q.right<=r.left+1)gl=Math.min(gl,r.left-q.right);
+          if(vOv&&q.left>=r.right-1)gr=Math.min(gr,q.left-r.right);
+          if(hOv&&q.bottom<=r.top+1)gt=Math.min(gt,r.top-q.bottom);
+          if(hOv&&q.top>=r.bottom-1)gb=Math.min(gb,q.top-r.bottom);}
+        const side=(size,g)=>{const want=Math.max(0,(44-size)/2),need=Math.max(0,(36-size)/2);if(g>=1e9)return want;g=Math.max(0,g);return Math.max(0,Math.min(want,Math.max(g/2,Math.min(need,g))))};
+        const bw=k=>parseFloat(cs['border'+k+'Width'])||0;
+        let t=side(r.height,gt),b=side(r.height,gb),l=side(r.width,gl),rt=side(r.width,gr);
+        // 当たりがはみ出して、横のスクロールや改225の「はみ出し」の判定を起こさないように、外枠の中に収める
+        const lim=box(el);
+        l=Math.max(0,Math.min(l,r.left-lim.l));rt=Math.max(0,Math.min(rt,lim.r-r.right));t=Math.max(0,Math.min(t,r.top-lim.t));b=Math.max(0,Math.min(b,lim.b-r.bottom));
+        if(t+b+l+rt<1)continue;
+        el.style.setProperty('--k227t',(t+bw('Top')).toFixed(1));el.style.setProperty('--k227b',(b+bw('Bottom')).toFixed(1));
+        el.style.setProperty('--k227l',(l+bw('Left')).toFixed(1));el.style.setProperty('--k227r',(rt+bw('Right')).toFixed(1));
+        el.classList.add(kind==='a'?'k227-ha':'k227-hb');
+        if(cs.position==='static')el.classList.add('k227-rel');
+        next.add(el);
+      }
+      for(const el of applied)if(!next.has(el))clear(el);
+      applied=next;
+    };
+    let hq=0,hlast=0;
+    const hitSoon=(ms)=>{if(hq)return;const w=Math.max(ms||0,700-(performance.now()-hlast));hq=setTimeout(()=>{hq=0;hlast=performance.now();try{hitPass()}catch(e){console.warn('k227 hit',e)}},w)};
+    addEventListener('resize',()=>hitSoon(200));
+    document.addEventListener('click',()=>hitSoon(300),true);
+    new MutationObserver(rs=>{for(const r of rs){if(r.type==='childList'&&(r.addedNodes.length||r.removedNodes.length)){hitSoon(300);return}if(r.type==='attributes'){hitSoon(300);return}}})
+      .observe(B,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','open','data-tab']});
+    setTimeout(()=>hitSoon(0),600);
+    window.__k227Hit=()=>{hitPass();return applied.size};
+
+    /* ---------- (4) 使い方 ---------- */
+    try{const ch=document.getElementById('help-ch0');if(ch&&!ch.querySelector('.k227-help')){const s=document.createElement('section');s.className='help-item k227-help';
+      s.innerHTML='<h4>指で使うとき（iPadなど）</h4><p>ボタンや表の説明は、その場所を<b>長押し（0.5秒）</b>すると出ます。指を離しても、次にどこかを触るまで出ています。長押しでは、押した物は動きません。</p><p>押している間だけ、ボタンの地が少し濃くなります。小さなボタンは、まわりを少し外して触っても押せます。</p>';
+      const c=ch.querySelector('.help-cards');(c?c.after(s):ch.append(s));}}catch(e){}
+  })();
+/* v148 改228：iPad段階3の②③。指で操作する端末（改225と同じ判定）のときだけ効かせる。PCは変えない。
+   ② スコアの楽譜（見本2）
+     ・譜面の帯の下に「指で：動かす｜範囲｜＋足す｜−外す」を置く。初めは「動かす」。
+     ・動かす：1本指で譜面・ページを動かす（ブラウザのスクロール）。軽く押すと和音を選ぶ（いまと同じ）。
+     ・範囲：指でなぞって範囲を選ぶ（マウスのドラッグと同じ）。＋足す＝Shift＋ドラッグ、−外す＝Alt＋ドラッグと同じ。
+     ・どの形でも、動かさずに0.5秒押すと、右クリックと同じ一覧（和音を聴く・和声を直す・区切り・演奏スタンプ…）を出す。
+     ・2本指の縮尺は、Safari の指の拡大（gesture）をそのまま使う（v105ごろからある処理）。
+     ・指では「約0.12秒の長押しでつかむ」（v115〜）は使わない（範囲を選ぶ前に指が止まるとつかんでしまうため）。
+   ③ 指板（見本3）
+     ・タップした所から22px以内で一番近い印を選び、鳴らして、その印のカードを出す（印は 12×20px と小さいため）。
+     ・カードは指を離しても残り、×か、ほかを触ると閉じる。
+     ・「大きく見る」の中は、2本指で拡大・縮小（1〜2.5倍、ホイールと同じ範囲）、1本指で動かす。 */
+  (()=>{
+    const touch=(()=>{try{return matchMedia('(pointer:coarse)').matches||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform||''))}catch(e){return false}})();
+    if(!touch)return;
+    const B=document.body;B.classList.add('k228-touch');
+    const css=document.createElement('style');css.id='k228-style';
+    css.textContent=`
+body.k228-touch .sv-inner{-webkit-touch-callout:none}
+body.k228-touch[data-k228m=move] #svInner{touch-action:pan-x pan-y}
+body.k228-touch #svScroll{overscroll-behavior-y:auto}
+#sv .sv-bar .k228-row{flex:0 1 auto;display:flex;align-items:center;gap:8px}
+#sv .sv-bar .k228-row .k228-l{font-size:12.5px;font-weight:700;color:hsl(var(--th) calc(10% * var(--tk)) 38%)}
+#sv .sv-bar .k228-seg{display:inline-flex;border:1px solid #c9d2d0;border-radius:9px;overflow:hidden;background:#fff}
+#sv .sv-bar .k228-seg button{border:0;border-right:1px solid #dfe5e4;background:#fff;height:36px;min-width:64px;padding:0 14px;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--ink);cursor:pointer}
+#sv .sv-bar .k228-seg button:last-child{border-right:0}
+#sv .sv-bar .k228-seg button[aria-pressed=true]{background:var(--teal,#1f6f63);color:#fff}
+#sv .sv-bar .k228-row .k228-h{font-size:11.5px;font-weight:600;color:hsl(var(--th) calc(8% * var(--tk)) 46%)}
+#fingerPanel #fgTip .k228-x{position:absolute;top:2px;right:2px;width:28px;height:28px;border:0;border-radius:6px;background:transparent;color:#cfe0dc;font-size:16px;line-height:28px;padding:0;pointer-events:auto;cursor:pointer}
+#fingerPanel #fgTip.k228-hasx{padding-right:34px!important}
+.fgz-sc{touch-action:pan-x pan-y}`;
+    document.head.appendChild(css);
+
+    /* ================= ② スコア ================= */
+    const MODES=[['move','動かす','1本指で譜面を動かします。軽く押すと和音を選びます'],['range','範囲','指でなぞって、囲んだ音を範囲にします（マウスのドラッグと同じ）'],['add','＋足す','なぞった音を、いまの範囲に足します（Shift＋ドラッグと同じ）'],['remove','−外す','なぞった音を、いまの範囲から外します（Alt＋ドラッグと同じ）']];
+    let mode='move';
+    const setMode=m=>{mode=m;B.dataset.k228m=m;document.querySelectorAll('#sv .k228-seg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===m)))};
+    setMode('move');
+    const bar=document.querySelector('#sv .sv-bar');
+    if(bar&&!bar.querySelector('.k228-row')){
+      const row=document.createElement('div');row.className='k228-row';
+      row.innerHTML='<span class="k228-l">指で</span><span class="k228-seg" role="group" aria-label="指でする操作"></span><span class="k228-h">長押しで一覧</span>';
+      const seg=row.querySelector('.k228-seg');
+      for(const [m,t,d] of MODES){const b=document.createElement('button');b.type='button';b.dataset.m=m;b.textContent=t;b.dataset.tip=t+'\n'+d;b.setAttribute('aria-pressed',String(m===mode));b.addEventListener('click',()=>setMode(m));seg.append(b)}
+      row.querySelector('.k228-h').dataset.tip='楽譜の上で長押し（0.5秒）\n右クリックと同じ一覧が出ます（この和音を聴く・和声を直す・区切り・演奏スタンプなど）';
+      bar.append(row);
+    }
+    const inner=document.getElementById('svInner');
+    const S={id:null,x:0,y:0,moved:false,lp:0,menu:false,el:null};
+    const onScore=t=>t&&t.closest&&t.closest('#svInner')&&!t.closest('.sv-ghost');
+    const mark=e=>{try{Object.defineProperty(e,'__k228',{value:true})}catch(err){}
+      if(mode==='add'){try{Object.defineProperty(e,'shiftKey',{value:true})}catch(err){}}
+      if(mode==='remove'){try{Object.defineProperty(e,'altKey',{value:true})}catch(err){}}};
+    const fakeCancel=(x,y)=>{const ev=new PointerEvent('pointercancel',{bubbles:true,pointerId:S.id,pointerType:'touch',clientX:x,clientY:y,isPrimary:true});try{Object.defineProperty(ev,'__k228',{value:true})}catch(err){}(inner||document).dispatchEvent(ev)};
+    let mine=false;const others=new Set();
+    for(const ev of ['pointermove','pointerup','pointercancel'])window.addEventListener(ev,e=>{if(e.pointerType==='touch'&&others.has(e.pointerId)){e.stopImmediatePropagation();if(ev!=='pointermove')others.delete(e.pointerId)}},true);
+    window.addEventListener('pointerdown',e=>{
+      if(e.pointerType!=='touch'||!onScore(e.target))return;
+      if(!e.isPrimary){others.add(e.pointerId);e.stopImmediatePropagation();if(S.id!=null&&!S.menu){fakeCancel(S.x,S.y);clearTimeout(S.lp);S.lp=0;S.menu=true}return} // 2本目の指は譜面の処理に渡さない（縮尺だけ）
+      mark(e);
+      Object.assign(S,{id:e.pointerId,x:e.clientX,y:e.clientY,moved:false,menu:false,el:e.target});
+      clearTimeout(S.lp);
+      S.lp=setTimeout(()=>{S.lp=0;if(S.moved||S.id==null)return;S.menu=true;
+        fakeCancel(S.x,S.y); // 押した所の和音選び・範囲選びは取りやめる
+        const t=document.elementFromPoint(S.x,S.y)||S.el;
+        const ev=new MouseEvent('contextmenu',{bubbles:true,cancelable:true,clientX:S.x,clientY:S.y,button:2,buttons:0,view:window});
+        mine=true;try{t.dispatchEvent(ev)}finally{mine=false}
+        try{navigator.vibrate&&navigator.vibrate(10)}catch(err){}
+      },500);
+    },true);
+    window.addEventListener('pointermove',e=>{
+      if(e.pointerType!=='touch'||e.pointerId!==S.id)return;
+      if(S.menu){e.stopImmediatePropagation();return}
+      if(!S.moved&&Math.hypot(e.clientX-S.x,e.clientY-S.y)>10){S.moved=true;clearTimeout(S.lp);S.lp=0}
+      if(mode==='move'){e.stopImmediatePropagation();return} // 動かすときは、譜面の処理に指の動きを渡さない（範囲の四角を出さない）
+      mark(e);
+    },true);
+    const end=e=>{
+      if(e.pointerType!=='touch'||e.pointerId!==S.id||e.__k228&&e.type==='pointercancel'&&!e.isTrusted)return;
+      clearTimeout(S.lp);S.lp=0;const id=S.id;
+      if(S.menu){e.stopImmediatePropagation();S.id=null;return}
+      if(mode==='move'&&S.moved&&e.type==='pointerup'){e.stopImmediatePropagation();fakeCancel(e.clientX,e.clientY);S.id=null;return}
+      mark(e);if(id===S.id)S.id=null;
+    };
+    window.addEventListener('pointerup',end,true);window.addEventListener('pointercancel',end,true);
+    // 指の長押しで端末が出す右クリック（Chromium など）は使わない（こちらで出す一覧と2つになるため）
+    window.addEventListener('contextmenu',e=>{if(mine)return;if(e.target&&e.target.closest&&e.target.closest('#svScroll')&&(S.id!=null||S.menu||performance.now()-lastT<800)){e.preventDefault();e.stopImmediatePropagation()}},true);
+    let lastT=0;window.addEventListener('touchend',()=>{lastT=performance.now()},{capture:true,passive:true});
+    // 長押しの一覧のあとに来る click は止める
+    window.addEventListener('click',e=>{if(S.menu&&e.target&&e.target.closest&&e.target.closest('#svScroll')){e.preventDefault();e.stopImmediatePropagation();S.menu=false}},true);
+
+    // 2本指の縮尺：Safari は gesture の処理（いまからある）に任せる。gesture のない端末だけ、ここで指の間の広がりから縮尺を変える
+    if(!('ongesturestart' in window)){
+      let sp=null,raf=0,want=null;
+      const d2=ts=>Math.hypot(ts[0].clientX-ts[1].clientX,ts[0].clientY-ts[1].clientY);
+      document.addEventListener('touchstart',e=>{if(e.touches.length!==2||!(e.target.closest&&e.target.closest('#svScroll'))){if(e.touches.length<2)sp=null;return}
+        if(!SV.pages)return;if(S.id!=null){fakeCancel(S.x,S.y);clearTimeout(S.lp);S.lp=0;S.menu=true}
+        sp={d:d2(e.touches),z:SV.zoom}},{capture:true,passive:true});
+      document.addEventListener('touchmove',e=>{if(!sp||e.touches.length!==2)return;if(e.cancelable)e.preventDefault();
+        const r=scoreEl('svScroll').getBoundingClientRect();want=[sp.z*d2(e.touches)/sp.d,(e.touches[0].clientX+e.touches[1].clientX)/2-r.left,(e.touches[0].clientY+e.touches[1].clientY)/2-r.top];
+        if(!raf)raf=requestAnimationFrame(()=>{raf=0;if(want)svZoomTo(...want)})},{capture:true,passive:false});
+      document.addEventListener('touchend',e=>{if(e.touches.length<2)sp=null},{capture:true,passive:true});
+    }
+
+    /* ================= ③ 指板 ================= */
+    const R=22;
+    const tipEl=()=>document.getElementById('fgTip');
+    const inBoard=t=>t&&t.closest&&t.closest('#fgBoard')&&!t.closest('#fgTip');
+    const nearest=(x,y)=>{let best=null,bd=1e9;
+      for(const g of document.querySelectorAll('#fgBoard .fg-mk')){const h=g.querySelector('.fg-hit')||g,r=h.getBoundingClientRect();if(!r.width)continue;
+        const dx=Math.max(r.left-x,0,x-r.right),dy=Math.max(r.top-y,0,y-r.bottom),d=Math.hypot(dx,dy);
+        const dc=Math.hypot(x-(r.left+r.width/2),y-(r.top+r.height/2));
+        if(d<=R&&(d<bd-.01||(Math.abs(d-bd)<.01&&dc<best.dc))){bd=d;best={g,h,r,dc}}}
+      return best};
+    const addX=()=>{const t=tipEl();if(!t||t.hidden)return;t.classList.add('k228-hasx');if(t.querySelector('.k228-x'))return;
+      const x=document.createElement('button');x.type='button';x.className='k228-x';x.textContent='×';x.setAttribute('aria-label','カードを閉じる');
+      x.addEventListener('click',e=>{e.stopPropagation();t.hidden=true});t.append(x)};
+    const showCard=(h,r)=>{const cx=r.left+r.width/2,cy=r.top+r.height/2;const ev=new PointerEvent('pointerover',{bubbles:true,clientX:cx,clientY:cy});ev.__k146=1;ev.__k155=1;ev.__k162=1;h.dispatchEvent(ev);setTimeout(addX,0)};
+    // 指から来る pointerover・pointerout・pointerleave は指板の処理に渡さない（離した瞬間にカードが消えるため）
+    for(const ev of ['pointerover','pointerout','pointerleave','pointerenter'])window.addEventListener(ev,e=>{if(e.pointerType==='touch'&&inBoard(e.target))e.stopImmediatePropagation()},true);
+    let fdown=null;
+    window.addEventListener('pointerdown',e=>{
+      if(e.pointerType!=='touch')return;
+      const t=tipEl();
+      if(t&&!t.hidden&&!(e.target.closest&&e.target.closest('#fgTip'))){t.hidden=true}
+      fdown=inBoard(e.target)?{x:e.clientX,y:e.clientY,at:performance.now()}:null;
+    },true);
+    window.addEventListener('click',e=>{
+      if(!fdown||!inBoard(e.target)||performance.now()-lastT>800)return;
+      const d=fdown;fdown=null;
+      // 開放弦の札・共鳴の印・音名は、いままでどおり（その場所の処理）
+      if(e.target.closest('.fg-ostr,.fg-reso,.fgn-nm'))return;
+      const n=nearest(d.x,d.y);if(!n)return;
+      if(!n.g.contains(e.target)){e.stopImmediatePropagation();e.preventDefault();n.h.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,clientX:n.r.left+n.r.width/2,clientY:n.r.top+n.r.height/2,view:window}))}
+      const key=n.g.dataset.key,st=n.g.dataset.s;
+      setTimeout(()=>{ // 鳴らしたあと印が描き直され、ページの位置も変わることがあるので、同じ印を探し直す
+        const g=document.querySelector('#fgBoard .fg-mk[data-key="'+CSS.escape(key)+'"][data-s="'+CSS.escape(st)+'"]');if(!g)return;
+        const h=g.querySelector('.fg-hit')||g;showCard(h,h.getBoundingClientRect())},30);
+      window.__k228Last=key+'|'+st;
+    },true);
+
+    // 大きく見る：2本指で拡大・縮小（ホイールの処理に1.15倍ずつ渡す）
+    let pz=null;
+    const dist=ts=>Math.hypot(ts[0].clientX-ts[1].clientX,ts[0].clientY-ts[1].clientY);
+    document.addEventListener('touchstart',e=>{const sc=e.target.closest&&e.target.closest('.fgz-sc');if(!sc||e.touches.length!==2){if(e.touches.length<2)pz=null;return}
+      pz={sc,d:dist(e.touches)};e.preventDefault()},{capture:true,passive:false});
+    document.addEventListener('touchmove',e=>{if(!pz||e.touches.length!==2)return;e.preventDefault();
+      const d=dist(e.touches),mx=(e.touches[0].clientX+e.touches[1].clientX)/2,my=(e.touches[0].clientY+e.touches[1].clientY)/2;
+      let k=d/pz.d,guard=0;
+      while((k>1.15||k<1/1.15)&&guard++<6){const up=k>1;pz.sc.dispatchEvent(new WheelEvent('wheel',{bubbles:true,cancelable:true,clientX:mx,clientY:my,deltaY:up?-100:100,ctrlKey:true}));pz.d*=up?1.15:1/1.15;k=d/pz.d}
+    },{capture:true,passive:false});
+    document.addEventListener('touchend',e=>{if(e.touches.length<2)pz=null},{capture:true,passive:true});
+    document.addEventListener('gesturestart',e=>{if(e.target.closest&&e.target.closest('.fgz-ov'))e.preventDefault()},{capture:true,passive:false});
+    document.addEventListener('gesturechange',e=>{if(e.target.closest&&e.target.closest('.fgz-ov'))e.preventDefault()},{capture:true,passive:false});
+
+    /* ================= 使い方 ================= */
+    try{const it=document.querySelector('#help-ch0 .k227-help');if(it&&!it.querySelector('.k228-p')){const p=document.createElement('p');p.className='k228-p';
+      p.innerHTML='<b>スコアの楽譜</b>：1本指で動かし、2本指で拡大・縮小します。長押しすると、右クリックと同じ一覧が出ます。範囲を選ぶときは、譜面の帯の「指で」を「範囲」「＋足す」「−外す」に切り替えて、指でなぞります。<br><b>指板</b>：印の近くを触ると、いちばん近い印を選んで鳴らし、カードを出します。カードは × か、ほかを触ると閉じます。「大きく見る」の中は2本指で拡大・縮小します。';
+      it.append(p)}}catch(e){}
+  })();
+/* v149：iPad段階3の④⑤。指で操作する端末（改225と同じ判定）のときだけ効かせる。PCは変えない。
+   ④ ドローン・和音タブの譜面の音符（見本5）
+     ・指で音符を上下に引いて動かす（マウスのドラッグと同じ。ドローンはオクターヴ、和音は音の高さ）。
+       いままでは処理の中で指を除いていたので、指のときだけ通す（2か所）。指は音符に少しずれても、22px以内なら一番近い音符をつかむ。
+     ・触った音符の右に ▲▼（44px）を出す。押すと、その音符を1段上・下へ（ドラッグで1段動かしたのと同じ）。
+       ほかの所を触ると消える。
+     ・譜面の上からはページのスクロールを始めない（音符を引くため）。
+   ⑤ キー・ダブルクリックの代わり（見本9）
+     ・スコアの範囲の札「✕ 解除（Esc）」を、指のときは「✕ 範囲を外す」にして高さ36px（当たりは改227で44pxに広がる）。
+     ・ダブルクリックで元に戻す4つ（譜面の枠の高さのつまみ・右の欄の境目・音量のつまみの0 dB・ページ合わせ）は、
+       0.35秒以内に同じ所を2回タップすると、ダブルクリックと同じにする（iPadがダブルタップをダブルクリックとして送るかは未確認のため）。 */
+  (()=>{
+    const touch=(()=>{try{return matchMedia('(pointer:coarse)').matches||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform||''))}catch(e){return false}})();
+    if(!touch)return;
+    window.__k149t=true;
+    const B=document.body;B.classList.add('k149-touch');
+    // ▲▼ がつくる押す動作（本物の指ではない）でも、つかむ処理が止まらないように
+    {const o=Element.prototype.setPointerCapture;Element.prototype.setPointerCapture=function(id){try{return o.call(this,id)}catch(e){}};
+     const r=Element.prototype.releasePointerCapture;Element.prototype.releasePointerCapture=function(id){try{return r.call(this,id)}catch(e){}}}
+    const css=document.createElement('style');css.id='k149-style';
+    css.textContent=`
+body.k149-touch #droneStaffViz,body.k149-touch #chordStaffViz{touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.k149-ud{position:fixed;z-index:3000;display:flex;flex-direction:column;gap:6px}
+.k149-ud[hidden]{display:none}
+.k149-ud button{width:44px;height:44px;border-radius:10px;border:1px solid #a3b4b1;background:#fff;box-shadow:0 2px 6px rgba(20,40,40,.18);font-size:18px;line-height:1;color:#1f6f63;padding:0;font-family:inherit;cursor:pointer}
+.k149-ud button:disabled{opacity:.4}
+body.k149-touch .sv-sel-x{height:36px;padding:0 12px;font-size:13px;border-radius:9px}`;
+    document.head.appendChild(css);
+
+    /* ================= ④ 譜面の音符 ================= */
+    const STAFFS='#droneStaffViz,#chordStaffViz';
+    const R=22;
+    const notesOf=st=>{const svg=st.querySelector('svg');if(!svg)return [];const m=svg.getScreenCTM();if(!m)return [];
+      return [...svg.querySelectorAll(st.id==='droneStaffViz'?'.staff-note[data-drone-role]':'.staff-note[data-voice]:not([data-fold])')].map(n=>{
+        const p=new DOMPoint(Number(n.dataset.nx),Number(n.dataset.y)).matrixTransform(m);return {n,x:p.x,y:p.y}}).filter(o=>Number.isFinite(o.x)&&Number.isFinite(o.y))};
+    const idOf=n=>n.dataset.voice!=null?{voice:n.dataset.voice}:{role:n.dataset.droneRole,index:n.dataset.index};
+    const find=(st,id)=>notesOf(st).find(o=>id.voice!=null?o.n.dataset.voice===id.voice:(o.n.dataset.droneRole===id.role&&o.n.dataset.index===id.index));
+    const near=(st,x,y)=>{let b=null,bd=R;for(const o of notesOf(st)){const d=Math.hypot(o.x-x,o.y-y);if(d<=bd){bd=d;b=o}}return b};
+    // 指のずれ：押した所から一番近い音符の中心へ、指が動いている間も同じだけずらす
+    const shift=new Map();
+    const setXY=(e,dx,dy)=>{try{Object.defineProperty(e,'clientX',{value:e.clientX+dx});Object.defineProperty(e,'clientY',{value:e.clientY+dy})}catch(err){}};
+    let sel=null; // {st,id}
+    const ud=document.createElement('div');ud.className='k149-ud';ud.hidden=true;
+    ud.innerHTML='<button type="button" data-d="1" aria-label="1段上へ">▲</button><button type="button" data-d="-1" aria-label="1段下へ">▼</button>';
+    document.body.append(ud);
+    const place=()=>{if(!sel){ud.hidden=true;return}const st=document.querySelector('#'+sel.st);const o=st&&st.offsetParent&&find(st,sel.id);if(!o){ud.hidden=true;return}
+      const r=st.getBoundingClientRect();ud.hidden=false;const h=ud.offsetHeight||94;
+      let x=o.x+30,y=o.y-h/2;if(x+44>Math.min(innerWidth-6,r.right+50))x=o.x-30-44;y=Math.max(r.top,Math.min(r.bottom-h,y));
+      ud.style.left=Math.round(x)+'px';ud.style.top=Math.round(y)+'px'};
+    window.addEventListener('pointerdown',e=>{
+      if(e.pointerType!=='touch')return;
+      if(e.target.closest&&e.target.closest('.k149-ud'))return;
+      const st=e.target.closest&&e.target.closest(STAFFS);
+      if(!st){if(sel){sel=null;ud.hidden=true}return}
+      const o=near(st,e.clientX,e.clientY);
+      if(o){const dx=o.x-e.clientX,dy=o.y-e.clientY;shift.set(e.pointerId,[dx,dy]);setXY(e,dx,dy);sel={st:st.id,id:idOf(o.n)}}
+      else{sel=null;ud.hidden=true}
+    },true);
+    for(const ev of ['pointermove','pointerup','pointercancel'])window.addEventListener(ev,e=>{
+      const s=shift.get(e.pointerId);if(!s||e.pointerType!=='touch')return;setXY(e,s[0],s[1]);
+      if(ev!=='pointermove'){shift.delete(e.pointerId);if(sel)setTimeout(place,60)}
+    },true);
+    // 1段動かす：その音符を押して、1段ぶん上・下へ引いて離したのと同じ動きを送る
+    const step=(dir)=>{if(!sel)return;const st=document.querySelector('#'+sel.st);const o=st&&find(st,sel.id);const svg=st&&st.querySelector('svg');if(!o||!svg)return;
+      const sc=svg.getScreenCTM().d,unit=st.id==='droneStaffViz'?STAFF.space*3.5*sc:STAFF.space/2*sc;
+      const fire=(type,y)=>{const ev=new PointerEvent(type,{bubbles:true,cancelable:true,pointerId:91,pointerType:'mouse',isPrimary:true,button:0,buttons:type==='pointerup'?0:1,clientX:o.x,clientY:y});st.dispatchEvent(ev)};
+      fire('pointerdown',o.y);fire('pointermove',o.y-dir*unit*.5);fire('pointermove',o.y-dir*unit);fire('pointerup',o.y-dir*unit);
+      setTimeout(place,60)};
+    ud.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;e.stopPropagation();step(Number(b.dataset.d))});
+    ud.addEventListener('pointerdown',e=>e.stopPropagation());
+    addEventListener('scroll',()=>{if(!ud.hidden)place()},{passive:true,capture:true});
+    addEventListener('resize',()=>{if(!ud.hidden)place()});
+    new MutationObserver(()=>{if(!ud.hidden)place()}).observe(document.getElementById('shell')||B,{attributes:true,attributeFilter:['data-tab']});
+
+    /* ================= ⑤ 範囲の札と、2回タップ ================= */
+    const fixX=()=>{const x=document.querySelector('.sv-sel-x');if(x&&x.textContent!=='✕ 範囲を外す'){x.textContent='✕ 範囲を外す';x.setAttribute('aria-label','範囲を外す')}};
+    {const si=document.getElementById('svSelInfo');if(si)new MutationObserver(fixX).observe(si,{childList:true,subtree:true});fixX()}
+    const DBL='#svGrip,.sv-grip,.stage-resizer,input[type=range]';
+    let tap=null,last=null;
+    window.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch'||!e.isPrimary)return;const t=e.target.closest&&e.target.closest(DBL);tap=t?{t,x:e.clientX,y:e.clientY,at:performance.now()}:null},true);
+    window.addEventListener('pointerup',e=>{
+      if(e.pointerType!=='touch'||!tap)return;const a=tap;tap=null;
+      if(performance.now()-a.at>350||Math.hypot(e.clientX-a.x,e.clientY-a.y)>12){last=null;return}
+      const now=performance.now();
+      if(last&&last.t===a.t&&now-last.at<=350&&Math.hypot(a.x-last.x,a.y-last.y)<=30){
+        last=null;a.t.dispatchEvent(new MouseEvent('dblclick',{bubbles:true,cancelable:true,clientX:e.clientX,clientY:e.clientY,detail:2,view:window}));return}
+      last={t:a.t,x:a.x,y:a.y,at:now};
+    },true);
+
+    /* ================= 使い方 ================= */
+    try{const it=document.querySelector('#help-ch0 .k227-help');if(it&&!it.querySelector('.k149-p')){const p=document.createElement('p');p.className='k149-p';
+      p.innerHTML='<b>ドローン・和音の譜面</b>：音符を指で上下に引いて動かします。触った音符の右に出る ▲▼ でも1段ずつ動かせます。<br><b>元に戻す</b>：譜面の枠の高さのつまみ・右の欄の境目・音量のつまみは、すばやく2回触ると元に戻ります（マウスのダブルクリックと同じ）。スコアの範囲は、帯の「✕ 範囲を外す」で外せます。';
+      it.append(p)}}catch(e){}
+  })();
+/* v149 改1：スコア「和声を書く・直す」カードの「調」の欄を中身に合う大きさにする（案A）。
+   いままでは全体の select の指定（幅100%・高さ45px）と .hr-row select{flex:1} で 316×45px になっていた。
+   幅はいちばん長い選択肢（C♭ 長調など）＋矢印が入るぶん（約89px）、高さは下のボタンにそろえて28px。
+   付け直す・消すの「調」（.u8-panel）は中身が長いので変えない。開いた一覧の幅は別の版で扱う。 */
+  (()=>{
+    const css=document.createElement('style');css.id='k149k1-style';
+    css.textContent=`.hr-edit .hr-row select{flex:none!important;width:auto!important;height:28px!important;min-height:0!important;padding:0 26px 0 8px!important;border-radius:6px!important}`;
+    document.head.appendChild(css);
+  })();
+  /* v149 改2：ブラウザ標準の選ぶ欄（select）を、アプリの一覧（mini-list）で開く。
+     対象：スコア 和声の行「書き方」・表示メニュー「和声の書き方」・和声を書くカードの「調」・付け直す・消すの「調」・演奏スタンプ（速さ・音量）の「終わりの小節」、
+           和音タブ 鳴らす高さ（最低音の高さ）・追加する音名・追加する音度・追加する音の高さ・ズレの方針、指板「スコアの音に合わせる」。
+     ドローンの「ドローン音の高さ」と表の「鳴らす高さ」は改224以前からアプリの一覧（26536行付近の処理）なので、ここでは開かない（幅の決まりだけ「ドローン音の高さ」に当てる）。
+     (1) 押す（mousedown）と標準の一覧の代わりに openMiniList を開く。キーでは Enter・Space・↑↓・Alt+↓ で開く。
+     (2) カーソルを当てたとき・開いている間の色は欄の色：紫の欄（和声）は枠 #a58bd8＋輪 #f3effc（地は白）、スタンプは選んでいる種類の色、そのほかは改208の緑。
+     (3) 一覧の幅は中身に合わせる（欄の幅にそろえない。ただし min(欄の幅,160px) より狭くしない）。
+     (4) 「書き方」の一覧は「書き方：」を外し、書き方ごとの例（ハ長調 IV6→V7→I）を添える。
+     (6) 開いている一覧は Esc で閉じる（いままでのアプリの一覧も Esc で閉じなかった）。
+     (5) 一覧をカードより手前に出し、一覧を押してもカード（和声を書く・付け直す・演奏スタンプ・表示メニュー）が閉じないようにする。 */
+  (()=>{
+    const st=document.createElement('style');st.id='k149a2css';st.textContent=`
+html body .mini-list{z-index:2000}
+html body select[data-k1p]{transition:border-color .15s,box-shadow .15s,background-color .15s}
+html body select[data-k1p]:hover,html body select[data-k1p][aria-expanded="true"]{border-color:var(--k1-b)!important;box-shadow:0 0 0 3px var(--k1-r)!important;background-color:#fff!important}
+html body .svm7 select.svm-sel:not(:hover):not([aria-expanded="true"]){border-color:#b4adc2!important;box-shadow:0 1px 2px rgba(30,60,58,.16)!important}
+html body .mini-list[data-k1p] button:hover{background:var(--k1-h)!important}
+html body .mini-list[data-k1p] button.is-current{color:var(--k1-c)}
+.mini-list .k1-ex{display:block;margin-top:1px;font:15px/1.25 "Times New Roman",Times,serif;color:#1f1d1a;font-weight:400}
+.mini-list .k1-ex sup{font-size:.68em;vertical-align:.55em;line-height:0}.mini-list .k1-ex sub{font-size:.68em;vertical-align:-.25em;line-height:0}
+.mini-list.k1-exs button{padding-top:5px;padding-bottom:6px}
+.mini-list.k1-exs{max-width:none!important}`;
+    document.head.append(st);
+    const PURPLE={b:'#a58bd8',r:'#f3effc',h:'#f4f0fc',c:'#5b36b5'};
+    const GREEN={b:'#0a6f66',r:'#cee4df',h:null,c:null};
+    const mix=(c,t)=>{const m=(c.match(/\d+/g)||[138,44,85]).map(Number);return 'rgb('+m.slice(0,3).map(v=>Math.round(v+(255-v)*t)).join(',')+')'};
+    const isDrone=s=>s.id==='droneOctave'||(s.classList.contains('octave-select')&&!!s.closest('#dronePanel'));
+    const mine=s=>s&&s.tagName==='SELECT'&&!s.classList.contains('hidden-select')&&!s.hidden&&!s.disabled&&!isDrone(s);
+    const isStyle=s=>s.id==='hrStyleSel'||s.classList.contains('svm-sel');
+    const theme=s=>{
+      const pf=s.closest('[class*="pf-"]');
+      if(pf){const box=pf.closest('.mk-edit')||pf.parentElement;const on=box&&box.querySelector('.pf-kinds button.on,.pf-seg button.on,.pf-kinds button[aria-pressed="true"]');const a=on?getComputedStyle(on).backgroundColor:'rgb(138,44,85)';return {b:mix(a,.45),r:mix(a,.9),h:mix(a,.92),c:a}}
+      if(isStyle(s)||s.closest('.hr-edit,.hr-row,.hr-bar,[class*="hr-"]'))return PURPLE;
+      return GREEN;
+    };
+    const paint=s=>{if(!mine(s))return;const t=theme(s);if(s.dataset.k1p===t.b)return;s.dataset.k1p=t.b;s.style.setProperty('--k1-b',t.b);s.style.setProperty('--k1-r',t.r)};
+    const paintAll=()=>{for(const s of document.querySelectorAll('select'))paint(s)};
+    paintAll();new MutationObserver(paintAll).observe(document.body,{childList:true,subtree:true});
+    document.addEventListener('pointerover',e=>{const s=e.target.closest&&e.target.closest('select');if(s)paint(s)},true);
+    const ex=k=>{try{const C={t:'C',m:'major'};const H=(deg,sev,inv,fn)=>({kind:'har',key:C,deg,alt:0,q:'M',sev,inv,of:0,fn,text:''});
+      return [H(4,'',1,'S'),H(5,'7',0,'D'),H(1,'',0,'T')].map(h=>hrHtml(h,k)).join(' → ')}catch(e){return ''}};
+    // the width follows the words (never narrower than min(box,160px)); the drone pitch list too
+    const fit=(l,b)=>{
+      const r=b.getBoundingClientRect(),down=!(parseFloat(l.style.top)<r.top);
+      l.style.minWidth=Math.min(r.width,160)+'px';l.style.width='max-content';
+      const view=document.documentElement;
+      l.style.left=Math.max(8,Math.min(view.clientWidth-l.offsetWidth-8,r.left))+'px';
+      if(!down)l.style.top=(r.top-4-l.offsetHeight)+'px';
+      const cur=l.querySelector('.is-current');if(cur)l.scrollTop=cur.offsetTop-l.clientHeight/2+cur.offsetHeight/2;
+    };
+    const open=s=>{
+      const style=isStyle(s);
+      const opts=[...s.options].map(o=>[o.value,style?o.textContent.replace(/^書き方：/,''):o.textContent,o.disabled?'選べません':'']);
+      openMiniList(s,opts,s.value,v=>{if(s.value===v)return;s.value=v;s.dispatchEvent(new Event('input',{bubbles:true}));s.dispatchEvent(new Event('change',{bubbles:true}))});
+      const l=miniList&&miniList.button===s?miniList.list:null;if(!l)return;
+      l.dataset.k1='1';const t=theme(s);
+      l.addEventListener('click',e=>e.stopPropagation());
+      if(t.h){l.dataset.k1p='1';l.style.setProperty('--k1-h',t.h);l.style.setProperty('--k1-c',t.c)}
+      if(style){l.classList.add('k1-exs');l.style.maxHeight='none';[...l.querySelectorAll('button')].forEach((bt,i)=>{const h=ex(opts[i][0]);if(!h)return;const e=document.createElement('span');e.className='k1-ex';e.innerHTML=h;bt.append(e)});
+        const r=s.getBoundingClientRect(),view=document.documentElement,below=view.clientHeight-r.bottom-10;
+        if(l.offsetHeight>below&&r.top-10>below){l.style.maxHeight=Math.min(l.scrollHeight,r.top-10)+'px';l.style.top=(r.top-4-l.offsetHeight)+'px'}
+        else{l.style.maxHeight=Math.max(below,120)+'px';l.style.top=(r.bottom+4)+'px'}}
+      fit(l,s);
+      if(miniList)miniList.box=s.getBoundingClientRect();
+    };
+    let lastClose={s:null,t:0};
+    new MutationObserver(()=>{const l=document.querySelector('.mini-list[data-k1]');if(!l&&cur){lastClose={s:cur,t:performance.now()};cur=null}}).observe(document.body,{childList:true});
+    let cur=null;
+    document.addEventListener('mousedown',e=>{
+      const s=e.target.closest&&e.target.closest('select');if(!mine(s)||e.button!==0)return;
+      e.preventDefault();
+      if(miniList&&miniList.button===s){closeMiniList();return}
+      if(lastClose.s===s&&performance.now()-lastClose.t<350)return;
+      s.focus({preventScroll:true});open(s);cur=s;
+    },true);
+    document.addEventListener('keydown',e=>{
+      const s=e.target;if(!mine(s))return;
+      if(e.key==='Enter'||e.key===' '||e.key==='ArrowDown'||e.key==='ArrowUp'||(e.altKey&&e.key==='ArrowDown')){e.preventDefault();e.stopPropagation();if(!(miniList&&miniList.button===s)){open(s);cur=s}}
+    },true);
+    // a press inside our list must not close the card the select lives in
+    for(const ev of ['pointerdown','mousedown'])window.addEventListener(ev,e=>{if(e.target.closest&&e.target.closest('.mini-list[data-k1]'))e.stopImmediatePropagation()},true);
+    // Esc closes any open app list (before this, another Esc handler took the key first and the list stayed open)
+    window.addEventListener('keydown',e=>{if(e.key==='Escape'&&miniList&&miniList.list.isConnected){e.preventDefault();e.stopImmediatePropagation();closeMiniList(true)}},true);
+    // ドローン音の高さ: the list keeps its own opener; only the width follows the words
+    new MutationObserver(()=>{const l=document.querySelector('.mini-list:not([data-k1]):not([data-k1w])');if(!l||!miniList||miniList.list!==l)return;const b=miniList.button;if(b&&b.id==='droneOctave'){l.dataset.k1w='1';fit(l,b);miniList.box=b.getBoundingClientRect()}}).observe(document.body,{childList:true});
+  })();
+
+  /* v149 改3：和音タブ「和音を入力する」の間隔・見出し・コントラスト、黒鍵の名前の切り替えを鍵盤の下へ。
+     (1) 間隔：「調と度数」の区画と「入力した音」の枠の間 22px、追加方法の下 16px。改101の左24pxの余白を外し、下の枠と左をそろえる。
+     (2) 「根音（純正比の基準）」→「純正比の基準にする根音」。上に20px＋細い区切り線。中が空の行（ライブラリから選ぶとき）は出さない。
+     (3) 構成音の追加の欄は中身の幅（列の間20px、選ぶ欄は120px以上）。
+     (4) コントラスト：入力した音の枠・字、空の根音欄、追加の囲み・見出し・小さい説明。
+     (5) 「黒鍵の入力」を右の欄の鍵盤の下（和音の位置へ の行の右端）へ移し「黒鍵の名前 ♯｜♭」の区切りボタンに。自分で入力のときだけ出す。
+         切り替えた直後、鍵盤の黒鍵に新しい名前を約1.5秒出す。 */
+  (()=>{
+    const css=document.createElement('style');css.id='k149k3-style';
+    css.textContent=`
+#chordSelectCard .k101-top{margin-left:0!important;margin-bottom:22px!important}
+#chordWork .chord-add-modes{margin-bottom:16px!important}
+#chordWork .chord-add-fields{grid-template-columns:auto auto auto!important;justify-content:start!important;align-items:end;column-gap:20px!important}
+#chordWork .chord-add-fields select{width:auto!important;min-width:120px!important}
+#chordWork .chord-add-fields .control{width:auto!important}
+#chordWork .chord-add-fields #chordAdd{margin-left:-6px}
+#chordWork .chord-input-row{margin-top:20px!important;padding-top:16px!important;border-top:1px solid #dfe7e5!important}
+#chordWork .chord-input-row:not(:has(> .control:not([hidden]))){display:none!important}
+#chordWork .input-box{border:1px dashed #8ea7a2!important;background:#fbfcfc!important}
+#chordWork .input-head span{color:#2f3d3a!important;font-size:13.5px!important}
+#chordWork .order-note{color:#4d5b58!important}
+#chordWork #chordJudge{color:#2f3d3a!important}
+#chordWork #inputChips>p{color:#4d5b58!important}
+#chordFreeRoots::before{border-color:#a3b4b1!important;color:#5d6a67!important}
+#chordAddSection{border-color:#c9d6d3!important;background:#f7faf9!important}
+#chordAddSection>summary{color:#2f3d3a!important;font-size:13.5px!important}
+#chordWork .chord-add-modes legend{color:#2f3d3a!important;font-size:13px!important}
+#chordWork .chord-mode-choice{color:#1d2e2b!important;font-size:13px!important}
+#chordWork .chord-mode-choice:not(:has(input:checked)){background:#fff!important;border-color:#a3b4b1!important}
+#chordWork .chord-add-help{color:#56625f!important;font-size:12px!important;margin-top:10px!important}
+.k149k3-black{margin-left:auto;display:flex;align-items:center;gap:8px}
+#shell:not(.chord-input) .k149k3-black{display:none}
+.k149k3-black-lab{font-size:12px;font-weight:700;color:#2f3d3a;white-space:nowrap}
+.k149k3-black .chord-mode{display:inline-flex!important;gap:0!important;padding:0!important;background:#fff!important;border:1px solid #a3b4b1!important;border-radius:8px!important;box-shadow:none!important;overflow:hidden}
+.k149k3-black .chord-mode button{background:#fff!important;color:#1d2e2b!important;box-shadow:none!important;border:0!important;border-radius:0!important;transform:none!important;height:28px!important;min-height:0!important;min-width:34px;padding:0 10px!important;font-size:15px!important;font-weight:700!important;line-height:1}
+.k149k3-black .chord-mode button+button{border-left:1px solid #a3b4b1!important}
+.k149k3-black .chord-mode button:not([aria-pressed=true]):hover{background:hsl(var(--th) calc(35% * var(--tk)) 93%)!important}
+.k149k3-black .chord-mode button:not([aria-pressed=true]):active,.k149k3-black .chord-mode button.k227-down:not([aria-pressed=true]){background:hsl(var(--th) calc(35% * var(--tk)) 87%)!important}
+.k149k3-black .chord-mode button[aria-pressed=true]{background:var(--accent)!important;color:#fff!important;cursor:default}
+.k149k3-black .chord-mode button:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+#chordPianoViz .k149k3-flash{pointer-events:none;animation:k149k3Fade 1.5s ease-in forwards}
+@keyframes k149k3Fade{0%,65%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){#chordPianoViz .k149k3-flash{animation:none}}`;
+    document.head.appendChild(css);
+    const lab=document.querySelector('#chordRootField>label');if(lab)lab.textContent='純正比の基準にする根音';
+    const TIP={sharp:'黒鍵を押すと ♯ の名前で入ります（C♯・D♯・F♯・G♯・A♯）',flat:'黒鍵を押すと ♭ の名前で入ります（D♭・E♭・G♭・A♭・B♭）'};
+    const field=document.querySelector('#chordWork .black-field'),fit=document.getElementById('chordKeyboardFit');
+    if(field&&fit&&fit.parentElement){
+      const grp=field.querySelector('.chord-mode');
+      const box=document.createElement('div');box.className='k149k3-black';
+      const l=document.createElement('span');l.className='k149k3-black-lab';l.id='k149k3BlackLab';l.textContent='黒鍵の名前';
+      grp.setAttribute('aria-labelledby','k149k3BlackLab');grp.removeAttribute('aria-label');
+      for(const b of grp.querySelectorAll('button[data-black]')){const s=b.dataset.black==='sharp';b.textContent=s?'♯':'♭';b.title=TIP[b.dataset.black];b.setAttribute('aria-label',s?'♯で入力':'♭で入力')}
+      box.append(l,grp);fit.parentElement.appendChild(box);field.remove();
+      const NAMES={sharp:['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'],flat:['C','D♭','D','E♭','E','F','G♭','G','A♭','A','B♭','B']};
+      let flashT=0;
+      const flash=kind=>{
+        const svg=document.querySelector('#chordPianoViz svg');if(!svg)return;
+        svg.querySelectorAll('.k149k3-flash').forEach(g=>g.remove());clearTimeout(flashT);
+        const ns='http://www.w3.org/2000/svg',g=document.createElementNS(ns,'g');g.setAttribute('class','k149k3-flash');g.setAttribute('aria-hidden','true');
+        const seen=new Set();
+        for(const r of svg.querySelectorAll('rect[data-midi]')){
+          const m=+r.getAttribute('data-midi');if(seen.has(m)||![1,3,6,8,10].includes(m%12))continue;
+          const x=+r.getAttribute('x'),w=+r.getAttribute('width'),y=+r.getAttribute('y'),h=+r.getAttribute('height');if(!(w>0)||w>30||!(h>0))continue;
+          seen.add(m);const n=NAMES[kind][m%12];
+          const bg=document.createElementNS(ns,'rect');bg.setAttribute('x',x+1);bg.setAttribute('y',y+h-43);bg.setAttribute('width',w-2);bg.setAttribute('height',27);bg.setAttribute('rx',4);bg.setAttribute('fill','#0a6f66');
+          const t1=document.createElementNS(ns,'text'),t2=document.createElementNS(ns,'text');
+          for(const [t,yy,s] of [[t1,y+h-32,n[0]],[t2,y+h-21,n.slice(1)]]){t.setAttribute('x',x+w/2);t.setAttribute('y',yy);t.setAttribute('text-anchor','middle');t.setAttribute('font-size','8.5');t.setAttribute('font-weight','700');t.setAttribute('fill','#fff');t.textContent=s}
+          g.append(bg,t1,t2);
+        }
+        svg.appendChild(g);flashT=setTimeout(()=>g.remove(),1600);
+      };
+      for(const b of grp.querySelectorAll('button[data-black]')){
+        let before='';
+        b.addEventListener('pointerdown',()=>{before=grp.querySelector('[aria-pressed=true]')?.dataset.black||''},true);
+        b.addEventListener('keydown',()=>{before=grp.querySelector('[aria-pressed=true]')?.dataset.black||''},true);
+        b.addEventListener('click',()=>{if(b.dataset.black!==before)flash(b.dataset.black);before=b.dataset.black});
+      }
+    }
+    // 使い方の文
+    const walker=document.createTreeWalker(document.getElementById('helpMain')||document.body,NodeFilter.SHOW_TEXT);
+    for(let n;(n=walker.nextNode());){if(n.nodeValue.includes('黒鍵から入れる音は「♯で入力」「♭で入力」で選べます。')){n.nodeValue=n.nodeValue.replace('黒鍵から入れる音は「♯で入力」「♭で入力」で選べます。','黒鍵から入れる音の名前は、右の欄の鍵盤の下の「黒鍵の名前」（♯・♭）で選べます。切り替えると、黒鍵に新しい名前が少しのあいだ出ます。');break}}
   })();
 
 // Undo: one history for the whole app. Each settled change stores the state before it.
