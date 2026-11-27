@@ -398,9 +398,9 @@
     .help-body h3{font-size:14.5px;color:var(--ink);margin:18px 0 4px}.help-body p{margin:0 0 8px}.help-foot{font-size:12.5px;line-height:1.8;color:hsl(var(--th) calc(9% * var(--tk)) 39%)}
     .help-body .defaults-status{margin:0 0 8px;font-size:12.5px;color:hsl(var(--th) calc(9% * var(--tk)) 39%)}.help-body .defaults-actions{justify-content:flex-start;gap:8px}
     @media(max-width:1180px){.brand-en{display:none}.brand h1{font-size:14px;white-space:normal;max-width:110px}.appbar{gap:12px;padding:0 14px}.pick-tuning select{width:118px}.pick-timbre select{width:100px}.appbar .mode-tab{padding:7px 11px;font-size:13px}}
-    @media(min-width:1000px) and (max-height:800px){.stage{padding:10px 18px}.stage-visual .visual-bottom{display:none}.stage-play{min-height:42px}.stage .status{display:none}#droneStage,#chordStage{gap:6px}}
+    @media(min-width:800px) and (max-height:800px){.stage{padding:10px 18px}.stage-visual .visual-bottom{display:none}.stage-play{min-height:42px}.stage .status{display:none}#droneStage,#chordStage{gap:6px}}
     /* Until the tablet and phone screens are designed: one column, stage first. */
-    @media(max-width:999px){.appbar{position:static;height:auto;flex-wrap:wrap;padding:10px 14px}.brand h1{max-width:none}.global{margin-left:0;flex-wrap:wrap}
+    @media(max-width:799px){.appbar{position:static;height:auto;flex-wrap:wrap;padding:10px 14px}.brand h1{max-width:none}.global{margin-left:0;flex-wrap:wrap}
       .shell,.shell[data-tab=chord].chord-input{display:flex;flex-direction:column;min-height:0}.stage{order:-1;position:static;height:auto;width:100%;border-left:0;border-bottom:1px solid hsl(var(--th) calc(16% * var(--tk)) 85%)}.work{padding:12px 14px 30px}
       .stage-visual .visual-staff svg{max-height:none!important}}
     @media(max-width:600px){.field-grid,.chord-fields,.chord-listen,.chord-input .chord-input-row{grid-template-columns:1fr}}
@@ -742,7 +742,7 @@ tr.drone-row{background:#fbf3df}.drone-row .note-name{background:#e9d6ab;color:#
     .stage-visual .visual-staff svg{max-height:max(150px,calc(100vh - 541px))}
     #chordStage .visual-staff svg{max-height:max(170px,calc(100vh - 556px))}
     .drone-table{min-width:790px!important}
-    @media(max-width:999px){.stage-resizer{display:none}.mode-strip{top:0}}
+    @media(max-width:799px){.stage-resizer{display:none}.mode-strip{top:0}}
     /* v43 */
     #openStrings .open-string:not(.is-active){background:hsl(var(--th) calc(42% * var(--tk)) 91%);border-color:hsl(var(--th) calc(35% * var(--tk)) 75%);color:hsl(var(--th) calc(47% * var(--tk)) 20%)}
     #openStrings .open-string:not(.is-active):hover{background:hsl(var(--th) calc(43% * var(--tk)) 86%)}
@@ -872,7 +872,7 @@ tr.drone-row{background:#fbf3df}.drone-row .note-name{background:#e9d6ab;color:#
     .appbar .mode-tab:hover{background:hsl(var(--th) calc(20% * var(--tk)) 95%)}
     .appbar .mode-tab.is-current{background:hsl(var(--th) calc(36% * var(--tk)) 93%);color:var(--accent-ink)!important;border-bottom-color:var(--accent);box-shadow:none;font-weight:800}
     @media(max-width:1180px){.appbar .mode-tab{padding:0 10px;font-size:13px}}
-    @media(max-width:999px){.appbar .mode-tabs{align-self:auto}.appbar .mode-tab{height:44px}}
+    @media(max-width:799px){.appbar .mode-tabs{align-self:auto}.appbar .mode-tab{height:44px}}
     :root[data-theme=standard]{--play:#a56249;--st-live:#a56249}
     .degree-btn.is-current small{color:#fff}
     /* v58 */
@@ -1147,11 +1147,11 @@ tr.drone-row{background:#fbf3df}.drone-row .note-name{background:#e9d6ab;color:#
 @media (max-width:1399px){.appbar .mode-tab{padding-left:8px;padding-right:8px;font-size:13px}.appbar .help-open{padding-left:9px;padding-right:9px}}
 .bar-toggle{min-height:36px;min-width:40px;padding:0 9px;color:var(--ink)}.bar-toggle svg{display:block}
 .bar-summary{display:none;align-items:center;gap:6px;height:28px;padding:0 10px;border:1px solid hsl(var(--th) calc(18% * var(--tk)) 84%);border-radius:8px;background:#fff;font-family:inherit;font-size:12.5px;font-weight:700;line-height:1;color:var(--ink);cursor:pointer;white-space:nowrap}
-@media(min-width:1000px){body.bar-compact .appbar{height:40px;gap:12px}}
+@media(min-width:800px){body.bar-compact .appbar{height:40px;gap:12px}}
 body.bar-compact .brand-text,body.bar-compact .global .defaults-pop,body.bar-compact .global .pick-theme,body.bar-compact .help-open,.bar-summary,body.bar-compact .bar-summary{display:none}
 body.bar-compact .global .set-group{height:32px}body.bar-compact .global .pick{height:22px}body.bar-compact .global .pick-open{height:26px}
 body.bar-compact .brand-mark{width:30px;height:30px}
-@media(min-width:1000px){body.bar-compact .appbar .mode-tab{height:40px;padding:0 12px;font-size:13px}}
+@media(min-width:800px){body.bar-compact .appbar .mode-tab{height:40px;padding:0 12px;font-size:13px}}
 #scorePanel .score-view{padding-bottom:16px}
 .score-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .score-toolbar .grow{flex:1}
@@ -1212,10 +1212,10 @@ body.score-focus.score-focus-panel .stage{display:block;position:fixed;right:aut
 .sa-note{margin:8px 0 0;font-size:11.5px;line-height:1.65;color:hsl(var(--th) calc(9% * var(--tk)) 36%)}
 .sa-policy{height:26px;padding:0 6px;border:1px solid hsl(var(--th) calc(20% * var(--tk)) 80%);border-radius:6px;background:#fff;font:inherit;font-size:12px;font-weight:700;color:var(--ink)}
 
-@media(min-width:1000px){.stage,.stage-resizer{top:var(--bar-h,60px);height:calc(100vh - var(--bar-h,60px))}.shell{min-height:calc(100vh - var(--bar-h,60px))}}
-@media(max-width:999px){body.bar-compact .appbar{min-height:40px}}
-@media(min-width:1000px) and (max-width:1279px){.shell[data-tab=score]{grid-template-columns:minmax(0,1fr) 6px min(var(--stage-w,620px),clamp(360px,33.4vw,620px))}}
-@media(max-width:999px){.shell[data-tab=score] .stage{order:1;border-bottom:0;border-top:1px solid hsl(var(--th) calc(16% * var(--tk)) 85%)}}
+@media(min-width:800px){.stage,.stage-resizer{top:var(--bar-h,60px);height:calc(100vh - var(--bar-h,60px))}.shell{min-height:calc(100vh - var(--bar-h,60px))}}
+@media(max-width:799px){body.bar-compact .appbar{min-height:40px}}
+@media(min-width:800px) and (max-width:1279px){.shell[data-tab=score]{grid-template-columns:minmax(0,1fr) 6px min(var(--stage-w,620px),clamp(360px,33.4vw,620px))}}
+@media(max-width:799px){.shell[data-tab=score] .stage{order:1;border-bottom:0;border-top:1px solid hsl(var(--th) calc(16% * var(--tk)) 85%)}}
 .sv .sv-bar{gap:8px 10px;padding:8px 10px}
 .sv-seg{display:inline-flex;align-items:stretch;border:1px solid hsl(var(--th) calc(20% * var(--tk)) 80%);border-radius:9px;overflow:hidden;background:#fff}
 .sv-seg button{border:0;border-right:1px solid hsl(var(--th) calc(20% * var(--tk)) 88%);background:#fff;height:32px;min-width:34px;padding:0 10px;font-family:inherit;font-size:13px;font-weight:800;color:var(--ink);cursor:pointer}
@@ -1235,7 +1235,7 @@ body.score-focus.score-focus-panel .stage{display:block;position:fixed;right:aut
 .sv-narrow .sv-tg{padding:0 9px}
 .sv-to-an{display:none}
 .score-to-score{display:none}
-@media(max-width:999px){.sv-to-an{display:inline-flex;border-style:solid}.score-to-score{display:inline-flex}}
+@media(max-width:799px){.sv-to-an{display:inline-flex;border-style:solid}.score-to-score{display:inline-flex}}
 .sv-rect.is-remove{border-color:#8a8f93;background:rgba(120,125,130,.12);border-style:dashed}
 .sv-bands{position:absolute;inset:0;pointer-events:none;z-index:0}
 .sv-band{position:absolute;border-radius:6px;background:rgba(106,63,201,.10);box-shadow:inset 0 0 0 1.5px rgba(106,63,201,.38)}
@@ -1264,10 +1264,10 @@ body.score-focus.score-focus-panel .stage{display:block;position:fixed;right:aut
 #scoreStage .score-stage-empty{margin:4px 0}
 
 .score-range-tag{margin-left:0}
-@media(min-width:1000px){.shell[data-tab=score] .stage{padding-top:0}.shell[data-tab=score] #scoreStageBody{border-top-left-radius:0;border-top-right-radius:0}}
+@media(min-width:800px){.shell[data-tab=score] .stage{padding-top:0}.shell[data-tab=score] #scoreStageBody{border-top-left-radius:0;border-top-right-radius:0}}
 .score-sticky{position:sticky;top:0;z-index:4;margin:-14px -14px -6px;padding:12px 14px 24px;background:linear-gradient(#fff 0,#fff calc(100% - 22px),rgba(255,255,255,.6) 100%)}
 .score-sticky::after{content:"";position:absolute;left:0;right:0;bottom:-18px;height:18px;background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,0));pointer-events:none}
-@media(max-width:999px){.score-sticky{position:static;box-shadow:none}}
+@media(max-width:799px){.score-sticky{position:static;box-shadow:none}}
 .sv-tg[hidden]{display:none}
 .sv-status .sv-spin{display:none}
 .sv-status.is-empty{display:none}
@@ -1314,13 +1314,13 @@ body.score-focus-panel .score-to-score{display:none}
 .score-open-dialog .save-actions{flex-wrap:wrap}
 .score-float-head b,.score-float-head small{color:#fff}
 @media (max-width:1519px){.appbar .mode-tab{padding-left:8px;padding-right:8px}}
-@media (min-width:1000px) and (max-width:1399px){.appbar .brand-text{display:none}}
+@media (min-width:800px) and (max-width:1399px){.appbar .brand-text{display:none}}
 body.bar-compact .global .set-group{flex-shrink:0}
 .appbar .pick-a4{flex-shrink:0}
-@media (min-width:1000px) and (max-width:1239px){body:not(.bar-compact) .appbar{height:auto;min-height:60px;flex-wrap:wrap;row-gap:4px;padding-top:4px;padding-bottom:6px}body:not(.bar-compact) .appbar .global{margin-left:auto}body:not(.bar-compact) .appbar .mode-tab{height:48px}}
+@media (min-width:800px) and (max-width:1239px){body:not(.bar-compact) .appbar{height:auto;min-height:60px;flex-wrap:wrap;row-gap:4px;padding-top:4px;padding-bottom:6px}body:not(.bar-compact) .appbar .global{margin-left:auto}body:not(.bar-compact) .appbar .mode-tab{height:48px}}
 .appbar .pick-a4 input{min-width:44px;flex-shrink:0}
 
-@media(max-width:999px){.score-sticky{background:#fff;padding-bottom:10px;margin-bottom:6px}.score-sticky::after{display:none}}
+@media(max-width:799px){.score-sticky{background:#fff;padding-bottom:10px;margin-bottom:6px}.score-sticky::after{display:none}}
 @media(min-width:1240px){body:not(.bar-compact) .appbar{height:48px;gap:12px;padding:0 18px}
  body:not(.bar-compact) .appbar .mode-tab{height:48px;font-size:13.5px!important;padding:0 12px!important;font-weight:700}
  body:not(.bar-compact) .brand-mark{width:34px;height:34px}body:not(.bar-compact) .brand-word{height:22px;width:auto}body:not(.bar-compact) .brand-kana,body:not(.bar-compact) .brand-en{font-size:8px}
@@ -1389,7 +1389,7 @@ body.score-playing .sv-col{background:rgba(214,134,40,.32)}
 .score-sticky{top:var(--tune-h,0px)}
 body.score-focus-panel .score-tune{top:44px}
 body.score-focus-panel .score-sticky{top:calc(44px + var(--tune-h,0px))}
-@media(max-width:999px){.score-tune{position:static}}
+@media(max-width:799px){.score-tune{position:static}}
 button.sa-policy{width:auto!important;padding:0 26px 0 10px!important;justify-content:flex-start!important}button.sa-policy::after{position:absolute;right:10px;top:50%}
 #scoreEmptyOpen,#scoreEmptyPick{display:grid;gap:4px}
 #scoreEmptyOpen[hidden],#scoreEmptyPick[hidden]{display:none}
@@ -1438,7 +1438,7 @@ body.score-playing #scoreResult{display:block;white-space:nowrap;overflow:hidden
 .hs-tip{background:#fff;color:hsl(var(--th) calc(12% * var(--tk)) 22%);border:1px solid hsl(var(--th) calc(14% * var(--tk)) 84%);box-shadow:0 3px 10px rgba(20,40,40,.12);font-size:11.5px;padding:5px 9px;max-width:240px;border-radius:7px}
 .hs-tip b{font-size:12px}.hs-tip span{color:hsl(var(--th) calc(8% * var(--tk)) 42%)}
 /* empty state */
-@media (min-width:1000px){#scoreEmptyOpen{min-height:calc(100vh - 150px);place-items:center}}
+@media (min-width:800px){#scoreEmptyOpen{min-height:calc(100vh - 150px);place-items:center}}
 #scoreEmptyOpen .score-empty-note{text-align:center}
 /* right: transparent stage, cards */
 #scoreStage{--tune-h:0px!important}
@@ -1540,7 +1540,7 @@ body.score-focus #scorePanel .sv:not(.is-strip) .sv-scroll{overflow-y:auto}
 body.score-playing #scoreStage .score-sel-root{visibility:hidden}
 
 body.score-focus-panel #scoreStage .score-sticky{top:44px;margin:0 -12px;padding:10px 12px}
-@media(max-width:999px){#scoreStage .score-sticky{position:static;margin:0 0 12px;padding:12px 14px;border-radius:12px}}
+@media(max-width:799px){#scoreStage .score-sticky{position:static;margin:0 0 12px;padding:12px 14px;border-radius:12px}}
 /* right: settings on a slightly darker panel, controls not painted white */
 #scoreStage .score-setpanel{margin:14px 0 16px;padding:4px 14px;border-radius:12px;background:var(--sp-panel);color:var(--st-text);box-shadow:inset 0 1px 2px rgba(0,0,0,.06)}
 #scoreStage .score-setpanel[hidden]{display:none}
@@ -1562,7 +1562,7 @@ body.score-focus-panel #scoreStage .score-sticky{top:44px;margin:0 -12px;padding
 #scoreStage .score-playing-note{background:transparent;box-shadow:none;padding:0;margin:0 0 10px;font-size:12px;color:var(--st-soft)}
 #scoreStage #scoreDrop,#scoreStage #scoreStatus{color:var(--st-text)}
 /* menu folded: 40px -> 32px */
-@media(min-width:1000px){body.bar-compact .appbar{height:32px}
+@media(min-width:800px){body.bar-compact .appbar{height:32px}
  body.bar-compact .appbar .mode-tab{height:32px;font-size:12.5px}
  body.bar-compact .global .set-group{height:26px}
  body.bar-compact .global .pick{height:20px}
@@ -1576,7 +1576,7 @@ body.score-focus #scoreView .score-sec{display:contents}
 /* the fixed head looks raised above what scrolls under it (no translucent band) */
 #scoreStage .score-sticky{z-index:5;box-shadow:0 1px 0 var(--sp-line),0 8px 14px -6px rgba(10,40,40,.32)}
 :root:not([data-theme=standard]):not([data-theme=white]) #scoreStage .score-sticky{box-shadow:0 1px 0 var(--sp-line),0 8px 16px -6px rgba(0,0,0,.55)}
-@media(max-width:999px){#scoreStage .score-sticky{box-shadow:none}}
+@media(max-width:799px){#scoreStage .score-sticky{box-shadow:none}}
 #scoreStage .score-sel-inv:empty{display:none}
 body.score-playing #scoreStage .score-sel-inv:empty{display:block}
 /* listen buttons: one shadow everywhere (same as 和音を再生), clear hover */
@@ -1590,7 +1590,7 @@ body.score-playing #scoreStage .score-sel-inv:empty{display:block}
 .score-nav #pbPlayNav:hover{background:var(--teal-dark,var(--teal));transform:translateY(-1px)}
 body.score-focus .score-nav #pbPlayNav{display:none}
 /* chord tab: the mode strip stops right under the menu, whatever its height */
-@media(min-width:1000px){.mode-strip{top:var(--bar-h,60px)}}
+@media(min-width:800px){.mode-strip{top:var(--bar-h,60px)}}
 /* ===== v107 ===== */
 /* the score tab is denser than the other tabs: its controls match the bar above the music */
 #scoreView .score-toolbar .button,#scoreView .score-nav .button{height:32px;min-height:32px;font-size:12.5px;padding:0 12px}
@@ -1919,7 +1919,7 @@ body.score-focus .v139-show{display:none}
 .mk-tag .u19s-sep{opacity:.55;padding:0 1px}
 #svViewMenu.u19s-fixed{position:fixed;z-index:45;overflow-y:auto;overscroll-behavior:contain}
 body.k24-menu .u7-say{z-index:44}
-@media(max-width:999px){:root{--bar-h:0px!important}.appbar{position:relative;z-index:20}#svToAnalysis>i{display:inline!important}}
+@media(max-width:799px){:root{--bar-h:0px!important}.appbar{position:relative;z-index:20}#svToAnalysis>i{display:inline!important}}
 .pick-panel.u19s-fit,.defaults-menu.u19s-fit{overflow-y:auto;overscroll-behavior:contain}
 
 /* v140: 音・音源・残響 */
@@ -1930,7 +1930,7 @@ body.k24-menu .u7-say{z-index:44}
 </style>
 <style id="v148css">
 /* ===== v148: 上の帯（タブ4つ）===== */
-@media(min-width:1000px){.appbar .mode-tabs{margin-left:20px}}
+@media(min-width:800px){.appbar .mode-tabs{margin-left:20px}}
 #tuningOpen{min-width:0!important;max-width:120px}
 #tuningOpen>*:first-child,#timbreOpen>*:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #timbreOpen{max-width:93px}
@@ -1946,8 +1946,8 @@ body.k24-menu .u7-say{z-index:44}
 /* ===== v148: 指板タブ ===== */
 /* 改37: the right pane has the drone and chord tabs' rules (480 px at start, 480 px – 60 %, double click = a third, no fold),
    but its own width (--fg-w), so widening it here does not change the other tabs */
-@media(min-width:1000px){.shell[data-tab=finger]{grid-template-columns:minmax(0,1fr) 6px var(--fg-w,480px)!important}}
-@media(max-width:999px){.shell[data-tab=finger] .stage{order:1;border-bottom:0;border-top:1px solid hsl(var(--th) calc(16% * var(--tk)) 85%)}}
+@media(min-width:800px){.shell[data-tab=finger]{grid-template-columns:minmax(0,1fr) 6px var(--fg-w,480px)!important}}
+@media(max-width:799px){.shell[data-tab=finger] .stage{order:1;border-bottom:0;border-top:1px solid hsl(var(--th) calc(16% * var(--tk)) 85%)}}
 .fg-open{display:none}
 .shell[data-tab=finger].fg-fold .stage>*:not(.fg-open){display:none!important}
 .shell[data-tab=finger].fg-fold .stage{padding:0!important;overflow:hidden}
@@ -4195,7 +4195,7 @@ body.score-focus.score-low .u10-lowbar{display:flex;align-items:center;justify-c
 .mk-layer .mk-tag.is-sub{font-size:calc(10.5px * var(--u11k,1));line-height:calc(14px * var(--u11k,1))}
 .mk-layer .hr-tag.u10-band{height:calc(22px * var(--u11kb,var(--u11k,1)));font-size:calc(15px * var(--u11kb,var(--u11k,1)));padding:calc(2px * var(--u11kb,var(--u11k,1))) calc(4px * var(--u11kb,var(--u11k,1))) 0 calc(5px * var(--u11kb,var(--u11k,1)))}
 /* the right side on the score tab: down to 360 px, or folded into a thin strip; the score column has no upper width */
-@media(min-width:1000px){
+@media(min-width:800px){
   .shell:not([data-tab=score]){grid-template-columns:minmax(0,1fr) 6px max(480px,var(--stage-w,clamp(480px,33.4vw,620px)))}
   .shell[data-tab=score] .work{max-width:none}
   .shell[data-tab=score].u11-fold{grid-template-columns:minmax(0,1fr) 6px 34px!important}
@@ -4203,7 +4203,7 @@ body.score-focus.score-low .u10-lowbar{display:flex;align-items:center;justify-c
   .shell.u11-fold .stage{padding:0!important;overflow:hidden}
 }
 .u11-open{display:none}
-@media(min-width:1000px){
+@media(min-width:800px){
   .shell.u11-fold .stage>.u11-open{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;height:auto;margin:10px 0 0;padding:10px 0;border:1px solid hsl(var(--th) calc(20% * var(--tk)) 80%);border-radius:9px;background:#fff;color:hsl(var(--th) calc(45% * var(--tk)) 24%);font:inherit;font-size:12px;font-weight:700;cursor:pointer;box-sizing:border-box}
   .shell.u11-fold .stage>.u11-open:hover{background:hsl(var(--th) calc(30% * var(--tk)) 95%)}
   .u11-open span{display:flex;flex-direction:column;align-items:center;line-height:1.2}
@@ -4214,7 +4214,7 @@ body.score-focus.score-low .u10-lowbar{display:flex;align-items:center;justify-c
 <style>
 /* ===== v132 ===== */
 /* the folded right side (案A): a 44 px strip, no frame on the button, a white round ‹ */
-@media(min-width:1000px){
+@media(min-width:800px){
   .shell[data-tab=score].u11-fold{grid-template-columns:minmax(0,1fr) 6px 44px!important}
   .shell.u11-fold .stage>.u11-open{margin:0;padding:16px 0;border:0;border-radius:0;background:transparent;height:100%;justify-content:flex-start;gap:10px;font-size:13px}
   .shell.u11-fold .stage>.u11-open:hover{background:rgba(255,255,255,.35)}
@@ -4228,7 +4228,7 @@ body.score-focus.score-low .u10-lowbar{display:flex;align-items:center;justify-c
 /* where the drag rests: a thin dotted line while dragging */
 .u12-guide{position:fixed;top:60px;bottom:0;width:0;border-left:2px dotted hsl(var(--th) calc(45% * var(--tk)) 30%);opacity:.55;pointer-events:none;z-index:40}
 .u12-guide[hidden]{display:none}
-@media(max-width:999px){.u12-guide{display:none}}
+@media(max-width:799px){.u12-guide{display:none}}
 </style>
 <style id="v135css">
 .u15-fold{position:fixed;z-index:3050;transform:translateX(-50%);width:28px;height:28px;padding:0;border-radius:50%;background:#fff;border:1px solid hsl(var(--th) calc(20% * var(--tk)) 80%);box-shadow:0 1px 4px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;color:hsl(var(--th) calc(45% * var(--tk)) 24%);cursor:pointer}
@@ -15094,7 +15094,7 @@ document.head.appendChild(st);
   if(!tip.hidden)place((nm.querySelector('.fgn-hit')||nm).getBoundingClientRect());on(nm)});
 })();
 // v148 改163: 「ずらし方と根拠」の表：白い板と枠で囲む・列の縦線・上行と下行を左の1つのマスで分ける・根拠を「決め方」「寄る先」の2列に・「本の値に戻す」を表の下へ
-(function(){const st=document.createElement('style');st.id='k163-mladj';st.textContent="#mlAdj>.ml-adjtop.k163{display:block;margin-top:10px}\n#mlAdj>.ml-adjtop.k163 p{margin:0 0 10px}\n#mlAdj>.ml-tbox{margin:0 14px;border:1px solid #d9bd7e;border-radius:8px;background:#fff;overflow:hidden}\n#mlAdj .ml-adjt.k163{margin:0;width:100%;font-size:12.5px}\n#mlAdj .ml-adjt.k163 th{background:#f6e3b8;color:#5e430f;border-bottom:1px solid #d9bd7e;padding:6px 10px;white-space:nowrap}\n#mlAdj .ml-adjt.k163 td{padding:6px 10px;border-bottom:1px solid #f1e3c2;background:#fff}\n#mlAdj .ml-adjt.k163 tr:last-child td{border-bottom:0}\n#mlAdj .ml-adjt.k163 th+th,#mlAdj .ml-adjt.k163 td+td{border-left:1px solid #ecdcb6}\n#mlAdj .ml-adjt.k163 th.gh{width:40px;padding:0}\n#mlAdj .ml-adjt.k163 .k163-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}\n#mlAdj .ml-adjt.k163 td.gc{width:40px;min-width:40px;box-sizing:border-box;padding:0;text-align:center;font-weight:750;font-size:13px;line-height:1.25;border-bottom:3px solid #fff}\n#mlAdj .ml-adjt.k163 td.gc.up{background:#dcefe9;color:#1f6b5a}\n#mlAdj .ml-adjt.k163 td.gc.dn{background:#e3e8f3;color:#3b4f7a;border-bottom:0}\n#mlAdj .ml-adjt.k163 tr.g1 td:not(.gc){border-top:3px solid #e8dcc0}\n#mlAdj .ml-adjt.k163 tr.g1 td.gc{border-top:3px solid #fff}\n#mlAdj .ml-adjt.k163 td.gc+td.n{border-left:0}\n#mlAdj .ml-adjt.k163 td.n{padding-left:12px;white-space:nowrap}\n#mlAdj .ml-adjt.k163 td.n small{margin-left:5px;font-size:11px;font-weight:600;color:#8a7d66}\n#mlAdj .ml-adjt.k163 td.n small.sub{margin:0 4px 0 0}\n#mlAdj .ml-adjt.k163 .rat .h{color:hsl(var(--th) calc(11% * var(--tk)) 45%)}\n#mlAdj .ml-adjt.k163 .rat .ar{color:#b8a888;margin:0 6px}\n#mlAdj .ml-adjt.k163 .rat .mel{font-weight:700;color:#3d3a33}\n#mlAdj .ml-adjt.k163 td.how{line-height:1.5;white-space:normal;min-width:12em}\n#mlAdj .ml-adjt.k163 td.to{white-space:normal;min-width:7em}\n#mlAdj .ml-adjt.k163 td.to{color:hsl(var(--th) calc(11% * var(--tk)) 30%)}\n#mlAdj .ml-adjt.k163 td.to em,#mlAdj .ml-adjt.k163 td.how em{font-style:normal;color:#8a5a00;font-weight:700}\n#mlAdj .ml-adjt.k163 .tag{font-size:10.5px;padding:0 5px}\n#mlAdj .ml-adjt.k163 .ml-step button{width:20px;height:20px;border-color:#e6d9bb;color:#8a6a2a;font-size:13px}\n#mlAdj .ml-adjt.k163 .ml-step button:hover{border-color:#c9952d}\n#mlAdj .ml-adjt.k163 .ml-step input{width:62px;height:24px;font-size:12.5px}\n#mlAdj>.ml-bot{display:flex;align-items:center;gap:12px;margin:10px 14px}\n#mlAdj>.ml-bot .ml-save{margin:0}\n#mlAdj{container-type:inline-size}\n@container (max-width:720px){\n #mlAdj .ml-adjt.k163 thead{display:none}\n #mlAdj .ml-adjt.k163,#mlAdj .ml-adjt.k163 tbody{display:block}\n #mlAdj>.ml-tbox{margin:0 8px}\n #mlAdj>.ml-adjtop.k163{margin-left:8px;margin-right:8px;width:auto}\n #mlAdj .ml-adjt.k163 tr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 8px;padding:8px 10px;border-bottom:1px solid #f1e3c2}\n #mlAdj .ml-adjt.k163 td,#mlAdj .ml-adjt.k163 tr.g1 td:not(.gc){padding:0;border:0!important;background:none}\n #mlAdj .ml-adjt.k163 td.gc{grid-column:1/-1;text-align:left;padding:2px 8px!important;border-radius:5px;width:auto;min-width:0}\n #mlAdj .ml-adjt.k163 td.how,#mlAdj .ml-adjt.k163 td.to{min-width:0}\n #mlAdj .ml-adjt.k163 td.gc.up{background:#dcefe9}#mlAdj .ml-adjt.k163 td.gc.dn{background:#e3e8f3}\n #mlAdj .ml-adjt.k163 td.gc br{display:none}\n #mlAdj .ml-adjt.k163 td.n{padding-left:0!important}\n #mlAdj .ml-adjt.k163 td.st,#mlAdj .ml-adjt.k163 td.how,#mlAdj .ml-adjt.k163 td.to{grid-column:1/-1}\n #mlAdj .ml-adjt.k163 td.to::before{content:\"寄る先：\";color:#8a7d66}\n #mlAdj .ml-adjt.k163 td.how::before{content:\"決め方：\";color:#8a7d66}\n #mlAdj>.ml-bot{flex-direction:column;align-items:flex-start;gap:6px;margin:8px}\n}";document.head.appendChild(st)})();
+(function(){const st=document.createElement('style');st.id='k163-mladj';st.textContent="#mlAdj>.ml-adjtop.k163{display:block;margin-top:10px}\n#mlAdj>.ml-adjtop.k163 p{margin:0 0 10px}\n#mlAdj>.ml-tbox{margin:0 14px;border:1px solid #d9bd7e;border-radius:8px;background:#fff;overflow:hidden}\n#mlAdj .ml-adjt.k163{margin:0;width:100%;font-size:12.5px}\n#mlAdj .ml-adjt.k163 th{background:#f6e3b8;color:#5e430f;border-bottom:1px solid #d9bd7e;padding:6px 10px;white-space:nowrap}\n#mlAdj .ml-adjt.k163 td{padding:6px 10px;border-bottom:1px solid #f1e3c2;background:#fff}\n#mlAdj .ml-adjt.k163 tr:last-child td{border-bottom:0}\n#mlAdj .ml-adjt.k163 th+th,#mlAdj .ml-adjt.k163 td+td{border-left:1px solid #ecdcb6}\n#mlAdj .ml-adjt.k163 th.gh{width:40px;padding:0}\n#mlAdj .ml-adjt.k163 .k163-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}\n#mlAdj .ml-adjt.k163 td.gc{width:40px;min-width:40px;box-sizing:border-box;padding:0;text-align:center;font-weight:750;font-size:13px;line-height:1.25;border-bottom:3px solid #fff}\n#mlAdj .ml-adjt.k163 td.gc.up{background:#dcefe9;color:#1f6b5a}\n#mlAdj .ml-adjt.k163 td.gc.dn{background:#e3e8f3;color:#3b4f7a;border-bottom:0}\n#mlAdj .ml-adjt.k163 tr.g1 td:not(.gc){border-top:3px solid #e8dcc0}\n#mlAdj .ml-adjt.k163 tr.g1 td.gc{border-top:3px solid #fff}\n#mlAdj .ml-adjt.k163 td.gc+td.n{border-left:0}\n#mlAdj .ml-adjt.k163 td.n{padding-left:12px;white-space:nowrap}\n#mlAdj .ml-adjt.k163 td.n small{margin-left:5px;font-size:11px;font-weight:600;color:#8a7d66}\n#mlAdj .ml-adjt.k163 td.n small.sub{margin:0 4px 0 0}\n#mlAdj .ml-adjt.k163 .rat .h{color:hsl(var(--th) calc(11% * var(--tk)) 45%)}\n#mlAdj .ml-adjt.k163 .rat .ar{color:#b8a888;margin:0 6px}\n#mlAdj .ml-adjt.k163 .rat .mel{font-weight:700;color:#3d3a33}\n#mlAdj .ml-adjt.k163 td.how{line-height:1.5;white-space:normal;min-width:12em}\n#mlAdj .ml-adjt.k163 td.to{white-space:normal;min-width:7em}\n#mlAdj .ml-adjt.k163 td.to{color:hsl(var(--th) calc(11% * var(--tk)) 30%)}\n#mlAdj .ml-adjt.k163 td.to em,#mlAdj .ml-adjt.k163 td.how em{font-style:normal;color:#8a5a00;font-weight:700}\n#mlAdj .ml-adjt.k163 .tag{font-size:10.5px;padding:0 5px}\n#mlAdj .ml-adjt.k163 .ml-step button{width:20px;height:20px;border-color:#e6d9bb;color:#8a6a2a;font-size:13px}\n#mlAdj .ml-adjt.k163 .ml-step button:hover{border-color:#c9952d}\n#mlAdj .ml-adjt.k163 .ml-step input{width:62px;height:24px;font-size:12.5px}\n#mlAdj>.ml-bot{display:flex;align-items:center;gap:12px;margin:10px 14px}\n#mlAdj>.ml-bot .ml-save{margin:0}\n#mlAdj{container-type:inline-size}\n@container (max-width:430px){\n #mlAdj .ml-adjt.k163 thead{display:none}\n #mlAdj .ml-adjt.k163,#mlAdj .ml-adjt.k163 tbody{display:block}\n #mlAdj>.ml-tbox{margin:0 8px}\n #mlAdj>.ml-adjtop.k163{margin-left:8px;margin-right:8px;width:auto}\n #mlAdj .ml-adjt.k163 tr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 8px;padding:8px 10px;border-bottom:1px solid #f1e3c2}\n #mlAdj .ml-adjt.k163 td,#mlAdj .ml-adjt.k163 tr.g1 td:not(.gc){padding:0;border:0!important;background:none}\n #mlAdj .ml-adjt.k163 td.gc{grid-column:1/-1;text-align:left;padding:2px 8px!important;border-radius:5px;width:auto;min-width:0}\n #mlAdj .ml-adjt.k163 td.how,#mlAdj .ml-adjt.k163 td.to{min-width:0}\n #mlAdj .ml-adjt.k163 td.gc.up{background:#dcefe9}#mlAdj .ml-adjt.k163 td.gc.dn{background:#e3e8f3}\n #mlAdj .ml-adjt.k163 td.gc br{display:none}\n #mlAdj .ml-adjt.k163 td.n{padding-left:0!important}\n #mlAdj .ml-adjt.k163 td.st,#mlAdj .ml-adjt.k163 td.how,#mlAdj .ml-adjt.k163 td.to{grid-column:1/-1}\n #mlAdj .ml-adjt.k163 td.to::before{content:\"寄る先：\";color:#8a7d66}\n #mlAdj .ml-adjt.k163 td.how::before{content:\"決め方：\";color:#8a7d66}\n #mlAdj>.ml-bot{flex-direction:column;align-items:flex-start;gap:6px;margin:8px}\n}";document.head.appendChild(st)})();
 // ===================== v148 改164: 押せない所の色の変化をなくす・譜面の音符の手の形・A4 の枠 =====================
 (function(){
   const st=document.createElement('style');st.id='k164Style';
@@ -17888,7 +17888,7 @@ body.k225-open #k225SetPanel{display:block}
    版を上げるときは、下の HARMOSCOPE_VERSION の1行だけを書き換える。
    (1) 使い方（？）の見出しの右に版の札（PC・iPadの横・縦すべて）。
    (2) 縦の帯の「共通の設定」一覧（改225）のいちばん下に「この端末で動いている版」。 */
-var HARMOSCOPE_VERSION='v149 改3';
+var HARMOSCOPE_VERSION='v149 改9';
 (function k226Version(){
   try{
     const css=document.createElement('style');css.id='k226-style';
@@ -17997,9 +17997,11 @@ body.k227-touch .k227-ha::after,body.k227-touch .k227-hb::before{content:'';posi
       if(e.pointerType!=='touch'||e.pointerId!==pid)return;
       if(Math.abs(e.clientX-dx)>MOVE||Math.abs(e.clientY-dy)>MOVE){lpCancel();unpress(true)}
     },{capture:true,passive:true});
-    const up=e=>{if(e.pointerType!=='touch'||e.pointerId!==pid)return;lpCancel();unpress(e.type==='pointercancel')};
+    const up=e=>{if(e.pointerType!=='touch'||e.pointerId!==pid)return;if(e.type==='pointercancel'){unpress(true);return}lpCancel();unpress(false)}; /* 改6 */
+    window.addEventListener('touchmove',e=>{if(!lpT||!e.touches.length)return;const t=e.touches[0];if(Math.abs(t.clientX-dx)>MOVE||Math.abs(t.clientY-dy)>MOVE){lpCancel();unpress(true)}},{capture:true,passive:true});
+    window.addEventListener('touchend',e=>{if(!e.touches.length)lpCancel()},{capture:true,passive:true});window.addEventListener('touchcancel',()=>lpCancel(),{capture:true,passive:true});
     window.addEventListener('pointerup',up,true);window.addEventListener('pointercancel',up,true);
-    window.addEventListener('scroll',()=>{lpCancel();unpress(true)},{capture:true,passive:true});
+    window.addEventListener('scroll',()=>{unpress(true)},{capture:true,passive:true}); /* 改6：取りやめは指の動きで決める */
     // 長押しのあとの click・右クリックの一覧は止める（押した物を動かさない）
     const eat=e=>{if(eatClick&&performance.now()-eatClick<1500){e.preventDefault();e.stopImmediatePropagation();if(e.type==='click')eatClick=0}};
     window.addEventListener('click',eat,true);
@@ -18511,6 +18513,431 @@ html body .mini-list[data-k1p] button.is-current{color:var(--k1-c)}
     // 使い方の文
     const walker=document.createTreeWalker(document.getElementById('helpMain')||document.body,NodeFilter.SHOW_TEXT);
     for(let n;(n=walker.nextNode());){if(n.nodeValue.includes('黒鍵から入れる音は「♯で入力」「♭で入力」で選べます。')){n.nodeValue=n.nodeValue.replace('黒鍵から入れる音は「♯で入力」「♭で入力」で選べます。','黒鍵から入れる音の名前は、右の欄の鍵盤の下の「黒鍵の名前」（♯・♭）で選べます。切り替えると、黒鍵に新しい名前が少しのあいだ出ます。');break}}
+  })();
+
+  /* v149 改4：開け閉めする見出し（details の summary）のカーソルの見た目をアプリ内でそろえる。
+     見出しの行いっぱいの地を薄く色づけ、字を濃い色に、押す間はもう一段濃く。
+     対象：12平均律との差・比の決め方・ズレの方針・12平均律より（diff-help）、構成音を追加（改3で hover が消えていた）、旋律的と比べる、スコア「もっと」、使い方のライセンス全文、
+     弦の長さの窓「測り方」（茶色）、ずらし方と根拠（琥珀）。「楽譜モードの欄も出す」は改196のまま。 */
+  (()=>{
+    const css=document.createElement('style');css.id='k149k4-style';
+    css.textContent=`/* 開け閉めの見出し：カーソルで見出しの行いっぱいの地を薄く色づけ、字を濃い色に。押す間はもう一段濃く。 */
+details.diff-help:not(.ml-cmp)>summary{margin:-9px -12px;padding:9px 12px;border-radius:9px;transition:background-color .12s,color .12s}
+details.diff-help:not(.ml-cmp)[open]>summary{margin-bottom:6px;border-radius:9px 9px 0 0}
+#chordAddSection>summary{margin:-9px -14px;padding:9px 14px;border-radius:9px;transition:background-color .12s,color .12s}
+#chordAddSection[open]>summary{margin-bottom:6px;border-radius:9px 9px 0 0}
+:is(details.diff-help:not(.ml-cmp),#chordAddSection)>summary:hover,.diff-help.ml-cmp>summary:hover,.score-more>summary:hover{background:hsl(var(--th) calc(30% * var(--tk)) 93%)!important;color:var(--accent-ink)!important}
+.diff-help.ml-cmp>summary:hover *{color:var(--accent-ink)!important}
+:is(details.diff-help,#chordAddSection,.score-more)>summary:active{background:hsl(var(--th) calc(30% * var(--tk)) 88%)!important}
+.help-license>summary{padding:6px 8px;margin:4px -8px;border-radius:6px}
+.help-license>summary:hover{background:hsl(var(--th) calc(30% * var(--tk)) 93%);color:var(--accent-ink)}
+.help-license>summary:active{background:hsl(var(--th) calc(30% * var(--tk)) 88%)}
+.fg-sl-dialog .fg-sl-sum:hover{background:#efe8d8!important;color:#4f3f22!important}
+.fg-sl-dialog .fg-sl-sum:active{background:#e4d9c2!important}
+.ml-adj>summary:hover{color:#5a3d08!important}
+.ml-adj>summary:active{background:#f3d79c!important}
+#dronePanel#dronePanel details.diff-help>summary:hover,#dronePanel#dronePanel details.diff-help>summary:hover *{color:var(--accent-ink)!important}
+`;
+    document.head.appendChild(css);
+  })();
+
+  /* v149 改6：iPad実機（11-27）の指摘のうち、縦横どちらでも起きる不具合を直す。指で操作する端末（改227と同じ判定）のときだけ効く。PCは変えない。
+     (1) ページ全体の拡大を止める（2回タップは touch-action、2本指は gesturestart を止める）。帯の形などを決める innerWidth を、拡大に左右されない幅にする。
+     (2) いちばん上・下で引っぱったとき、アプリの画面全体がずれないようにする（overscroll-behavior）。
+     (3) 選ぶ欄で、アプリの一覧とiPadの選ぶ画面が二重に出ないようにする（指を離したときの既定の動きを止め、アプリの一覧だけを開く）。
+     (4) 長押しの説明カード：改227の長押しを、iPadが途中で送る pointercancel やほかの所のスクロールで取りやめないようにする（組み立てで改227の本文を書き換え）。指が10px動いたときだけ取りやめる。
+     (5) 表が欄の右で切れるとき、表を縮めて欄に収める（いちばん小さくて 0.8倍。それでも入らないときは今までどおり横に動かす）。
+     (6) 指板の印：iPadが click を送らないときも、指を離した所で選んでカードを出す。
+     (7) スコアの2本指の拡大中は、和声の帯（前の大きさのまま残る）を隠し、描き直したら戻す。
+     (8) スコアの範囲の札「範囲 N音 ✕範囲を外す」を、譜面の上ではなく「指で」の行に置く（譜面の上の札と重ならないように）。
+     (9) 指板「大きく見る」の見出し：左の見出しと右の操作が重なるときは、右の言葉を縮め、それでも重なるときは音律を2行目に下げる。「✕ 閉じる（Esc）」は「✕ 閉じる」に。 */
+  (()=>{
+    const touch=(()=>{try{return matchMedia('(pointer:coarse)').matches||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform||''))}catch(e){return false}})();
+    if(!touch)return;
+    const B=document.body,DE=document.documentElement;B.classList.add('k6-touch');
+    const css=document.createElement('style');css.id='k149k6-style';
+    css.textContent=`
+html{touch-action:manipulation;overscroll-behavior:none}
+body{overscroll-behavior:none}
+body.k6-touch #sv .k228-row #svSelInfo{position:static!important;top:auto!important;left:auto!important;box-shadow:none;height:30px;margin-left:2px}
+body.k6-touch #sv .k228-row.k6-hassel .k228-h{display:none}
+body.k6-touch :is(#svPreBands,#svBands,#svMarks).k6-zhide{visibility:hidden}
+body.k6-touch .fgz-h.k6-2l span{display:block;margin-left:0;margin-top:2px}
+body.k6-touch .fgz-box.k6-2l{padding-top:58px}
+body.k6-touch .fgz-r .k6-hint{white-space:nowrap}`;
+    document.head.append(css);
+
+    /* ---------- (1) ページの拡大 ---------- */
+    for(const t of ['gesturestart','gesturechange','gestureend'])document.addEventListener(t,e=>e.preventDefault(),{capture:true,passive:false});
+    // 帯の形などを決める幅：ページを拡大しても変わらない幅（iPad はスクロールバーが場所を取らないので、ふだんは同じ値）
+    try{Object.defineProperty(window,'innerWidth',{configurable:true,get:()=>DE.clientWidth})}catch(e){}
+
+    /* ---------- (3) 選ぶ欄の二重 ---------- */
+    {let ts=null;
+      document.addEventListener('touchstart',e=>{const s=e.target.closest&&e.target.closest('select');ts=(s&&e.touches.length===1&&!s.disabled)?{s,x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{capture:true,passive:true});
+      document.addEventListener('touchmove',e=>{if(ts&&e.touches.length&&Math.hypot(e.touches[0].clientX-ts.x,e.touches[0].clientY-ts.y)>10)ts=null},{capture:true,passive:true});
+      document.addEventListener('touchend',e=>{if(!ts)return;const {s,x,y}=ts;ts=null;
+        // アプリの一覧を開く処理（押し下げで開く）があれば、それだけを動かし、iPadの選ぶ画面は開かせない
+        const md=new MouseEvent('mousedown',{bubbles:true,cancelable:true,button:0,buttons:1,clientX:x,clientY:y,view:window});
+        const handled=!s.dispatchEvent(md);
+        if(handled){e.preventDefault();window.__k6Sel=(window.__k6Sel||0)+1}
+      },{capture:true,passive:false});
+      document.addEventListener('touchcancel',()=>{ts=null},{capture:true,passive:true});
+    }
+
+    /* ---------- (5) 表を欄に収める ---------- */
+    const k7NeedW=t=>{const z=t.style.zoom,wd=t.style.width;t.style.zoom='';t.style.width='min-content';const w=t.getBoundingClientRect().width;t.style.width=wd;t.style.zoom=z;return w};
+    const clipOf=t=>{for(let a=t.parentElement,i=0;a&&a!==B&&i<4;a=a.parentElement,i++){const ox=getComputedStyle(a).overflowX;if(ox!=='visible')return a}return null};
+    let fq=0;
+    const fit=()=>{fq=0;
+      for(const t of document.querySelectorAll('table')){
+        if(!t.getClientRects().length||t.closest('#help,[hidden],.fgz-ov'))continue;
+        const c=clipOf(t);if(!c)continue;
+        const z0=parseFloat(t.style.zoom)||1;
+        const w=k7NeedW(t); // 縮める前に要る幅（v149 改7：幅100%の表は欄に合わせて広がり、前の倍率で割ると毎回少しずつ縮んでいったので、縮められる最小の幅で測る）
+        const avail=c.clientWidth-2;
+        let z=w>avail+1?Math.max(.8,Math.floor(avail/w*1000)/1000):1;
+        if(Math.abs(z-z0)<.004)continue;
+        t.style.zoom=z===1?'':String(z);t.dataset.k6z=z===1?'':String(z);
+      }};
+    const fitSoon=ms=>{if(fq)return;fq=setTimeout(fit,ms||150)};
+    addEventListener('resize',()=>fitSoon(200));
+    document.addEventListener('click',()=>fitSoon(400),true);
+    document.addEventListener('change',()=>fitSoon(300),true);
+    new MutationObserver(rs=>{if(rs.some(r=>r.type==='childList'?[...r.addedNodes,...r.removedNodes].some(n=>n.nodeType===1&&n.nodeName!=='STYLE'):true))fitSoon(250)})
+      .observe(B,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','data-tab','open']});
+    setTimeout(()=>fitSoon(0),800);
+    window.__k6Fit=()=>{fit();return [...document.querySelectorAll('table[data-k6z]')].filter(t=>t.dataset.k6z).map(t=>t.className+':'+t.dataset.k6z)};
+
+    /* ---------- (6) 指板の印：click が来ないとき ---------- */
+    {let d=null;
+      const inBoard=t=>t&&t.closest&&t.closest('#fgBoard')&&!t.closest('#fgTip');
+      window.addEventListener('pointerdown',e=>{d=(e.pointerType==='touch'&&e.isPrimary&&inBoard(e.target))?{x:e.clientX,y:e.clientY,at:performance.now(),moved:false,clicked:false}:null},true);
+      window.addEventListener('pointermove',e=>{if(d&&e.pointerType==='touch'&&Math.hypot(e.clientX-d.x,e.clientY-d.y)>10)d.moved=true},{capture:true,passive:true});
+      window.addEventListener('click',e=>{if(d&&inBoard(e.target))d.clicked=true},true);
+      window.addEventListener('pointerup',e=>{if(!d||e.pointerType!=='touch')return;const q=d;
+        if(q.moved||performance.now()-q.at>600){d=null;return}
+        setTimeout(()=>{if(q.clicked||d!==q)return;d=null;
+          const el=document.elementFromPoint(q.x,q.y);if(!inBoard(el))return;
+          el.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,clientX:q.x,clientY:q.y,view:window}));window.__k6FgClick=(window.__k6FgClick||0)+1},380);
+      },true);
+    }
+
+    /* ---------- (7) スコアの拡大中は和声の帯を隠す ---------- */
+    {const z0=svZoomTo;let ht=0,mo=null;
+      const show=()=>{clearTimeout(ht);ht=0;if(mo){mo.disconnect();mo=null}for(const id of ['svPreBands','svBands','svMarks']){const e=document.getElementById(id);if(e)e.classList.remove('k6-zhide')}};
+      svZoomTo=function(){const before=SV.zoom,r=z0.apply(this,arguments);
+        if(Math.abs(SV.zoom-before)>.01){
+          for(const id of ['svPreBands','svBands','svMarks']){const e=document.getElementById(id);if(e)e.classList.add('k6-zhide')}
+          clearTimeout(ht);if(mo)mo.disconnect();
+          // 描き直しが始まる（0.14秒後）より後に帯が描き直されたら戻す。来なくても 1.2秒で戻す
+          const t0=performance.now();
+          mo=new MutationObserver(()=>{if(performance.now()-t0<150)return;clearTimeout(ht);ht=setTimeout(show,60)});
+          for(const id of ['svPreBands','svBands','svMarks']){const e=document.getElementById(id);if(e)mo.observe(e,{childList:true,subtree:true,attributes:true,attributeFilter:['style']})}
+          ht=setTimeout(show,1200);
+        }
+        return r};
+    }
+
+    /* ---------- (8) 範囲の札を「指で」の行へ ---------- */
+    {const put=()=>{const row=document.querySelector('#sv .sv-bar .k228-row'),info=document.getElementById('svSelInfo');if(!row||!info)return;
+        if(info.parentElement!==row)row.append(info);
+        info.style.top='';row.classList.toggle('k6-hassel',!info.hidden)};
+      put();
+      const info=document.getElementById('svSelInfo');if(info)new MutationObserver(put).observe(info,{attributes:true,attributeFilter:['hidden','style']});
+      const sv=document.getElementById('sv');if(sv)new MutationObserver(()=>{if(document.querySelector('#sv .sv-bar .k228-row')&&info&&info.parentElement!==document.querySelector('#sv .sv-bar .k228-row'))put()}).observe(sv,{childList:true,subtree:true});
+    }
+
+    /* ---------- (9) 大きく見るの見出し ---------- */
+    {const fix=ov=>{const box=ov.querySelector('.fgz-box'),h=ov.querySelector('.fgz-h'),r=ov.querySelector('.fgz-r');if(!box||!h||!r)return;
+        const x=r.querySelector('.fgz-x');if(x&&/Esc/.test(x.textContent))x.textContent='✕ 閉じる';
+        for(const n of [...r.childNodes])if(n.nodeType===3&&n.textContent.trim()){const s=document.createElement('span');s.className='k6-hint';s.textContent=n.textContent.trim();n.replaceWith(s)}
+        const hint=r.querySelector('.k6-hint');
+        const over=()=>h.getBoundingClientRect().right>r.getBoundingClientRect().left-10;
+        h.classList.remove('k6-2l');box.classList.remove('k6-2l');if(hint){hint.hidden=false;hint.textContent='2本指で拡大・縮小　1本指で動かす'}
+        if(over()&&hint)hint.textContent='2本指で拡大・縮小';
+        if(over()&&hint)hint.hidden=true;
+        if(over()){h.classList.add('k6-2l');box.classList.add('k6-2l')}
+      };
+      new MutationObserver(rs=>{for(const r of rs)for(const n of r.addedNodes)if(n.nodeType===1&&n.classList.contains('fgz-ov'))requestAnimationFrame(()=>fix(n))}).observe(B,{childList:true,subtree:true});
+      addEventListener('resize',()=>{const ov=document.querySelector('.fgz-ov');if(ov)fix(ov)});
+    }
+  })();
+
+/* v149 改7（iPad横向き③）：
+   (20) 「ずらし方と根拠」の表：欄が狭い（720px以下）ときも表の形のまま、詰めて収める。見出しの行は低く、見出しは中央ぞろえ。
+        カードの形（改163）になるのは 430px 以下だけにした（改163の @container の幅を720→430に書き換え）。
+   (表を収める・改6の直し) 改6の「表を欄に収める」は幅100%の表を測るとき欄の幅で測っていて、押すたびに少しずつ縮んでいった。縮められる最小の幅で測るようにした（改6の fit の中の1行を書き換え）。
+   (21) 「ドローン音の高さ」の欄：「調」の欄と同じく、欄の中を2行で見せる（1行目 高さとHz、2行目 弦との関係）。
+        選ぶ欄（select）はそのまま下にあり、押すと今までどおりアプリの一覧が開く。上に重ねた字は押せない（pointer-events:none）。 */
+(function k7Landscape(){
+  try{
+    const css=document.createElement('style');css.id='k7-style';
+    css.textContent=`@container (max-width:720px){
+ #mlAdj .ml-adjt.k163 td,#mlAdj .ml-adjt.k163 th{padding-left:8px;padding-right:8px}
+ #mlAdj .ml-adjt.k163 td.gc,#mlAdj .ml-adjt.k163 th.gh{padding:0}
+ #mlAdj .ml-adjt.k163 th{white-space:normal;text-align:center;vertical-align:middle;padding-top:3px;padding-bottom:3px;line-height:1.25}
+ #mlAdj .ml-adjt.k163 .rat .ar{display:none}
+ #mlAdj .ml-adjt.k163 .rat .h::after{content:" →";color:#b8a888}
+ #mlAdj .ml-adjt.k163 .rat .mel{display:block}
+ #mlAdj .ml-adjt.k163 td.n small{display:block;margin:0}
+ #mlAdj .ml-adjt.k163 td.how{min-width:8em}
+ #mlAdj .ml-adjt.k163 td.to{min-width:5.5em;font-size:12px}
+ #mlAdj .ml-adjt.k163 .ml-step input{width:54px}
+}
+#dronePanel .k7-oct-wrap{position:relative}
+#dronePanel #droneOctave.k7-two{color:transparent!important;-webkit-text-fill-color:transparent}
+#dronePanel .k7-oct-face{position:absolute;left:1px;top:1px;right:34px;bottom:1px;pointer-events:none;display:flex;flex-direction:column;justify-content:center;padding-left:13px;line-height:1.25;overflow:hidden;white-space:nowrap;color:var(--k7c,#0f4f49)}
+#dronePanel .k7-oct-face b{font-size:16px;font-weight:800}
+#dronePanel .k7-oct-face b span{font-weight:700;margin-left:8px}
+#dronePanel .k7-oct-face small{font-size:12.5px;font-weight:600;color:#5f6f6c;margin-top:1px;text-overflow:ellipsis;overflow:hidden}`;
+    document.head.appendChild(css);
+    const s=document.getElementById('droneOctave');if(!s)return;
+    const box=document.createElement('span');box.className='k7-oct-wrap';box.style.display='block';
+    s.parentNode.insertBefore(box,s);box.appendChild(s);
+    const face=document.createElement('span');face.className='k7-oct-face';face.setAttribute('aria-hidden','true');box.appendChild(face);
+    s.classList.add('k7-two');
+    let last='';
+    const paint=()=>{
+      const o=s.selectedOptions&&s.selectedOptions[0];const t=o?o.textContent:'';
+      const ko=document.getElementById('keyOpen'),col=ko?getComputedStyle(ko).color:'';
+      const sig=t+'|'+col;if(sig===last)return;last=sig;
+      const m=t.match(/^(\S+?)（(.*?Hz)・(.*)）$/);
+      if(!m){face.textContent='';s.classList.remove('k7-two');return}
+      s.classList.add('k7-two');if(col)face.style.setProperty('--k7c',col);
+      face.innerHTML='';const b=document.createElement('b');b.textContent=m[1];const hz=document.createElement('span');hz.textContent=m[2];b.appendChild(hz);
+      const sm=document.createElement('small');sm.textContent=m[3];face.append(b,sm);
+    };
+    // the face takes the 調 field's text colour, so it follows the theme like the field next to it
+    paint();
+    s.addEventListener('change',()=>requestAnimationFrame(paint));
+    new MutationObserver(()=>requestAnimationFrame(paint)).observe(s,{childList:true,subtree:true,characterData:true});
+    // the value is also set without a change event (undo, restoring a saved state)
+    setInterval(paint,400);
+  }catch(e){console.error('v149 改7',e)}
+})();
+
+  /* v149 改8：iPad ①共通の見た目（見本で決めた形）。指で操作する端末（改227と同じ判定）のときだけ効く。PCは変えない。
+     (1) 縦の「共通の設定」の音色を押したら、横・PCと同じ音色の一覧（区切りと、声・ヴィブラフォンの詳細設定つき）を開く（見本9）。
+         一覧は狭い幅では1列に積む。閉じたら元の場所へ戻す。
+     (2) スコアの帯の「指で 動かす｜範囲｜＋足す｜−外す」を高さ30px、選んだ所は薄い灰青の地＋下線に（見本2 案A）。
+     (3) 「この版をこの端末に保存しました」などの知らせ：下につまみの線を足し、上へはらっても消える（見本3）。
+     (4) ↶↷ を文字でなく図で描く（見本5）。
+     (5) 横（幅1000px以上）のスコア以外のタブで、右の欄のいちばん狭い幅（＝初めの幅）を480pxから420pxに（ドラッグで広げた幅はそのまま。スコアのタブは今までどおり）。「A3 ドローン音」の「ドローン音」を19pxに（見本8）。 */
+  (()=>{
+    const touch=(()=>{try{return matchMedia('(pointer:coarse)').matches||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform||''))}catch(e){return false}})();
+    if(!touch)return;
+    const B=document.body;B.classList.add('k8-touch');
+    const css=document.createElement('style');css.id='k149k8-style';
+    css.textContent=`
+#k8TPHost{position:fixed;z-index:2100;left:12px;top:12px;width:min(810px,calc(100vw - 24px))}
+#k8TPHost #timbrePanel{position:relative!important;inset:auto!important;top:0!important;left:0!important;right:auto!important;bottom:auto!important;transform:none!important;margin:0!important;
+  width:100%!important;max-width:none!important;max-height:calc(100vh - 24px);overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box}
+#k8TPHost #timbrePanel:not([hidden]){display:block!important}
+#k8TPDim{position:fixed;inset:0;z-index:2090;background:rgba(20,30,30,.18)}
+body.k8-touch #sv .sv-bar .k228-seg{border-color:#cfd6d4;border-radius:8px}
+body.k8-touch #sv .sv-bar .k228-seg button{height:30px;min-width:0;padding:0 11px;font-size:12.5px;font-weight:700;color:#3a4a48;border-right-color:#e3e8e7}
+body.k8-touch #sv .sv-bar .k228-seg button[aria-pressed=true]{background:#e6ecee;color:#22394a;box-shadow:inset 0 -2.5px 0 #3d5a6c}
+body.k8-touch #sv .sv-bar .k228-row .k228-l{font-size:11.5px;color:#6a7876}
+body.k8-touch .k223-note.k224-os{touch-action:none}
+body.k8-touch .k223-note .k8-grab{grid-column:1/3;justify-self:center;display:block;width:36px;height:5px;border-radius:3px;background:rgba(60,60,67,.28);margin-top:9px}
+body.k8-touch .k223-note.k8-drag{animation:none!important;transition:none!important}
+body.k8-touch .k223-note.k8-back{transition:transform .18s ease-out,opacity .18s ease-out}
+body.k8-touch .history-btn svg{display:block;margin:auto;width:22px;height:22px}
+@media (min-width:800px){
+  body.k8-touch .shell:not([data-tab=score]){grid-template-columns:minmax(0,1fr) 6px max(420px,var(--stage-w,420px))}
+  body.k8-touch #droneName .k8-dn{font-size:19px}
+}`;
+    document.head.append(css);
+
+    /* ---------- (1) 縦の共通の設定から、横と同じ音色の一覧を開く ---------- */
+    {
+      const panel=document.getElementById('timbrePanel'),btn=document.getElementById('timbreOpen');
+      let home=null,next=null,host=null,dim=null;
+      const back=()=>{if(!host)return;if(home)home.insertBefore(panel,next&&next.parentNode===home?next:null);if(host.__ro)host.__ro.disconnect();host.remove();dim.remove();host=dim=null};
+      const close=()=>{if(!panel.hidden&&btn)btn.click();if(!panel.hidden){panel.hidden=true;btn&&btn.setAttribute('aria-expanded','false')}back()};
+      const open=sel=>{
+        if(!panel||!btn)return;
+        home=panel.parentNode;next=panel.nextSibling;
+        dim=document.createElement('div');dim.id='k8TPDim';
+        host=document.createElement('div');host.id='k8TPHost';
+        document.body.append(dim,host);host.append(panel);
+        if(panel.hidden)btn.click(); // アプリの開き方で一覧を作る（声・ヴィブラフォンの行も）
+        panel.hidden=false;
+        const r=sel.getBoundingClientRect();
+        const place=()=>{if(!host)return;const h=Math.min(panel.offsetHeight,innerHeight-24);host.style.top=Math.max(12,Math.min(r.bottom+6,innerHeight-12-h))+'px'};
+        place();
+        // 声の行の下に詳細設定が出て高くなったときも、画面の下で切れないように置き直す
+        if(window.ResizeObserver){const ro=new ResizeObserver(place);ro.observe(panel);host.__ro=ro}
+        dim.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();close()});
+        const cur=panel.querySelector('.tb-items button.is-current');if(cur)try{cur.scrollIntoView({block:'nearest'})}catch(e){}
+        window.__k8TP=(window.__k8TP||0)+1;
+      };
+      // 一覧が閉じたら（選んで閉じる・外を押す・Esc）元の場所へ戻す
+      if(panel)new MutationObserver(()=>{if(panel.hidden&&host)back()}).observe(panel,{attributes:true,attributeFilter:['hidden']});
+      const isTim=t=>t&&t.closest&&t.closest('#k225SetPanel select[data-s=tim]');
+      window.addEventListener('mousedown',e=>{const s=isTim(e.target);if(!s)return;e.preventDefault();e.stopImmediatePropagation();if(host)close();else open(s)},true);
+      window.addEventListener('keydown',e=>{const s=isTim(e.target);if(!s)return;if(e.key==='Enter'||e.key===' '||e.key==='ArrowDown'){e.preventDefault();e.stopImmediatePropagation();if(!host)open(s)}},true);
+      window.addEventListener('keydown',e=>{if(e.key==='Escape'&&host){e.preventDefault();e.stopImmediatePropagation();close()}},true);
+    }
+
+    /* ---------- (3) 知らせを上へはらって消す ---------- */
+    {
+      const note=document.querySelector('.k223-note');
+      if(note){
+        if(!note.querySelector('.k8-grab')){const g=document.createElement('i');g.className='k8-grab';g.setAttribute('aria-hidden','true');note.append(g)}
+        let d=null,swiped=0;
+        const set=(dy)=>{note.style.transform=`translate(-50%,${dy}px)`;note.style.opacity=String(Math.max(.25,1+dy/120))};
+        note.addEventListener('touchstart',e=>{if(e.touches.length!==1||e.target.closest('button'))return;d={y:e.touches[0].clientY,dy:0};note.classList.remove('k8-back');note.classList.add('k8-drag')},{passive:true});
+        note.addEventListener('touchmove',e=>{if(!d)return;e.preventDefault();d.dy=Math.min(0,e.touches[0].clientY-d.y)+Math.max(0,e.touches[0].clientY-d.y)*.15;set(d.dy)},{passive:false});
+        const end=()=>{if(!d)return;const dy=d.dy;d=null;note.classList.remove('k8-drag');note.classList.add('k8-back');
+          if(dy<-30){swiped=performance.now();set(-90);note.style.opacity='0';setTimeout(()=>{note.hidden=true;note.classList.remove('k8-back');note.style.transform='';note.style.opacity=''},190)}
+          else{note.style.transform='';note.style.opacity='';setTimeout(()=>note.classList.remove('k8-back'),200)}};
+        note.addEventListener('touchend',end);note.addEventListener('touchcancel',end);
+        // はらった直後の click で別の動きが起きないように
+        note.addEventListener('click',e=>{if(performance.now()-swiped<400){e.stopImmediatePropagation();e.preventDefault()}},true);
+        // 出し直すときは元の位置から
+        new MutationObserver(()=>{if(!note.hidden&&!d){note.style.transform='';note.style.opacity=''}}).observe(note,{attributes:true,attributeFilter:['hidden']});
+      }
+    }
+
+    /* ---------- (4) ↶↷ を図で ---------- */
+    {
+      const svg=m=>`<svg viewBox="0 0 24 24" aria-hidden="true"${m?' style="transform:scaleX(-1)"':''}><path d="M8.5 5 3.5 10l5 5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 10h10.5a5.5 5.5 0 0 1 0 11H10" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg>`;
+      const put=()=>{for(const [id,m] of [['undoBtn',0],['redoBtn',1]]){const b=document.getElementById(id);if(b&&!b.querySelector('svg'))b.innerHTML=svg(m)}};
+      put();
+      for(const id of ['undoBtn','redoBtn']){const b=document.getElementById(id);if(b)new MutationObserver(put).observe(b,{childList:true,characterData:true,subtree:true})}
+    }
+
+    /* ---------- (5) 「ドローン音」の字 ---------- */
+    {
+      const dn=document.getElementById('droneName');
+      const fix=()=>{if(!dn||dn.querySelector('.k8-dn'))return;const t=dn.textContent,m=t.match(/^(.*?)(ドローン音)$/);if(!m)return;
+        dn.textContent=m[1];const s=document.createElement('span');s.className='k8-dn';s.textContent=m[2];dn.append(s)};
+      fix();if(dn)new MutationObserver(fix).observe(dn,{childList:true,characterData:true,subtree:true});
+    }
+  })();
+  /* v149 改9：iPad 縦向き②（見本1〜9で決めた形）。幅800〜999px（縦のiPad 834pxなど）のときだけ効く。PC・横（幅1000px以上）は変えない。
+     (0) 1列に切り替わる境目を1000px→800pxに（組み立てでCSSの min-width:800px / max-width:799px を 800 / 799 に置き換え）。
+     (1) 右の欄の幅を3つに：ふつう320px／最低限230px（中身は同じ）／閉じる＝28pxの細い帯。境目を引くと3つに吸い付く。帯を押すと開く。
+         スコアのタブは閉じた形で始める。スコア以外は前の状態を覚える。見出しは上下に積み、再生ボタンは横いっぱい。
+     (2) 指板：1段目＝いま選んでいる和音（左）とこの和音の譜面（右）、2段目＝指板（全幅）、3段目＝選んだ音（左）とこの音だけの取り方（右）。右の欄は使わない。
+     (3) スコアの折り返し：Verovio に頼める段の間は48まで。足りない分は描いたあとで2段目以降を下へずらして、和声の帯と札の場所を空ける
+         （v148 改13 の「場所が取れない縮尺は横1列」を、この幅では変える）。 */
+  (()=>{
+    const B=document.body,K9={st:null,score:'c',drag:null};
+    const narrow=()=>{const w=document.documentElement.clientWidth;return w>=800&&w<1000};
+    const css=document.createElement('style');css.id='k149k9-style';
+    css.textContent=`
+body.k9-n #shell.shell:not([data-tab=finger]){grid-template-columns:minmax(0,1fr) 6px var(--k9w,320px)!important}
+body.k9-n #shell.k9-c:not([data-tab=finger]){grid-template-columns:minmax(0,1fr) 6px 28px!important}
+body.k9-n #shell.k9-c:not([data-tab=finger]) .stage>*:not(.k9-open){display:none!important}
+body.k9-n #shell.k9-c:not([data-tab=finger]) .stage{padding:0!important;overflow:hidden}
+body.k9-n #shell:not([data-tab=finger]) .stage-resizer{touch-action:none}
+.k9-open{display:none}
+body.k9-n #shell.k9-c:not([data-tab=finger]) .stage>.k9-open{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;height:100%;margin:0;padding:12px 0;border:0;background:transparent;cursor:pointer;color:hsl(var(--th) calc(30% * var(--tk)) 26%);font:inherit}
+body.k9-n .k9-open .k9-ar{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;font-weight:800;font-size:15px;line-height:1;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+body.k9-n .k9-open .k9-tx{writing-mode:vertical-rl;font-size:11px;font-weight:700;letter-spacing:.1em}
+body.k9-n .k9-open:hover{background:rgba(255,255,255,.35)}
+body.k9-n .k9-open:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+body.k9-n #shell:not([data-tab=finger]) .stage-resizer.k9-drag{background:hsl(var(--th) calc(30% * var(--tk)) 70%)}
+body.k9-n #droneStage .stage-head,body.k9-n #chordStage .stage-head{padding-right:0!important;min-height:0!important}
+body.k9-n #droneStage .stage-actions,body.k9-n #chordStage .stage-actions{position:static!important;width:100%!important;display:flex!important;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 4px}
+body.k9-n #droneStage .stage-actions .stage-play,body.k9-n #chordStage .stage-actions .stage-play{flex:1 1 100%}
+body.k9-n #shell.shell[data-tab=finger]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;column-gap:14px;padding:0 20px;align-items:start}
+body.k9-n #shell[data-tab=finger]>.work,body.k9-n #fingerPanel,body.k9-n #shell[data-tab=finger]>.stage,body.k9-n #fingerStage{display:contents!important}
+body.k9-n #shell[data-tab=finger]>.stage-resizer,body.k9-n #shell[data-tab=finger] .k9-open{display:none!important}
+body.k9-n #fingerPanel>*,body.k9-n #fingerStage>*{grid-column:1/-1;margin:0 0 14px!important;min-width:0}
+body.k9-n #fingerPanel>.fg-strip{grid-row:1;margin-top:10px!important}
+body.k9-n #fingerPanel>.fg-c1{grid-row:2}
+body.k9-n #fingerPanel>.fg-c2{grid-row:3}
+body.k9-n #fgPress{grid-column:1!important;grid-row:4}
+body.k9-n #fgHow{grid-column:2!important;grid-row:4}
+body.k9-n #fingerPanel>.fg-c3{grid-row:5}
+body.k9-n #fgCalc{grid-column:1!important;grid-row:6}
+body.k9-n #fgHarm{grid-column:2!important;grid-row:6}
+body.k9-n #fingerPanel .fg-c1 .fg-body2col{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:14px;align-items:start}
+body.k9-n #fingerPanel .fg-c1 .fg-body2col>*{width:auto!important;max-width:none!important;min-width:0!important;margin:0!important}
+`;
+    document.head.append(css);
+    const shell=document.getElementById('shell'),rz=document.getElementById('stageResizer'),stage=shell&&shell.querySelector('.stage');
+    if(!shell||!rz||!stage)return;
+    const open=document.createElement('button');open.type='button';open.className='k9-open';
+    open.innerHTML='<span class="k9-ar" aria-hidden="true">‹</span><span class="k9-tx"></span>';stage.prepend(open);
+    const LABEL={drone:'ドローンの譜面を開く',chord:'和音の譜面を開く',score:'和音の分析を開く'};
+    const tab=()=>shell.dataset.tab||'drone';
+    const KEY='hsK9Right';
+    const get=()=>{if(tab()==='score')return K9.score;if(K9.st)return K9.st;try{K9.st=localStorage.getItem(KEY)||'n'}catch(e){K9.st='n'}return K9.st};
+    const put=s=>{if(tab()==='score')K9.score=s;else{K9.st=s;try{localStorage.setItem(KEY,s)}catch(e){}}apply()};
+    const W={n:320,m:230};
+    function apply(){
+      const on=narrow();B.classList.toggle('k9-n',on);
+      if(!on){shell.classList.remove('k9-c');return}
+      // スコアの「たたむ」（44px）はこの幅では使わず、こちらの3つの幅で扱う
+      try{if(typeof U11!=='undefined'&&U11.fold&&U11.foldTo)U11.foldTo(false,false)}catch(e){}
+      const s=get();shell.classList.toggle('k9-c',s==='c');
+      if(s!=='c'&&!K9.drag)shell.style.setProperty('--k9w',W[s]+'px');
+      open.querySelector('.k9-tx').textContent=LABEL[tab()]||'開く';
+      open.setAttribute('aria-label',LABEL[tab()]||'右の欄を開く');
+    }
+    K9.apply=apply;
+    open.addEventListener('click',()=>put('n'));
+    // 境目を引く：引いている間は幅がついてきて、離すと 320／230／閉じる のいちばん近い所へ
+    rz.addEventListener('pointerdown',e=>{
+      if(!narrow()||tab()==='finger')return;
+      e.preventDefault();e.stopImmediatePropagation();
+      try{rz.setPointerCapture(e.pointerId)}catch(_){}
+      K9.drag={id:e.pointerId};rz.classList.add('k9-drag');shell.classList.remove('k9-c');
+      const cw=()=>document.documentElement.clientWidth;
+      const move=m=>{const w=Math.max(28,Math.min(360,cw()-m.clientX-3));shell.style.setProperty('--k9w',Math.round(w)+'px');K9.drag.w=w};
+      const up=()=>{rz.removeEventListener('pointermove',move);rz.removeEventListener('pointerup',up);rz.removeEventListener('pointercancel',up);rz.classList.remove('k9-drag');
+        const w=K9.drag.w;K9.drag=null;if(w===undefined){apply();return}
+        put(w<130?'c':w<275?'m':'n');dispatchEvent(new Event('resize'))};
+      rz.addEventListener('pointermove',move);rz.addEventListener('pointerup',up);rz.addEventListener('pointercancel',up);
+    },true);
+    rz.addEventListener('dblclick',e=>{if(!narrow())return;e.stopImmediatePropagation();put('n')},true);
+    rz.addEventListener('keydown',e=>{if(!narrow()||(e.key!=='ArrowLeft'&&e.key!=='ArrowRight'))return;e.preventDefault();e.stopImmediatePropagation();
+      const order=['c','m','n'];const i=order.indexOf(get());put(order[Math.max(0,Math.min(2,i+(e.key==='ArrowLeft'?1:-1)))])},true);
+    new MutationObserver(apply).observe(shell,{attributes:true,attributeFilter:['data-tab']});
+    window.addEventListener('resize',()=>{const was=B.classList.contains('k9-n');apply();if(was!==narrow())setTimeout(()=>dispatchEvent(new Event('resize')),0)});
+    apply();
+
+    // (3) スコア：段をずらして和声の帯と札の場所を空ける（この幅だけ）。ほかの包みより外側にするため、読み込みの最後に包む
+    setTimeout(()=>{
+      try{
+        const M={ex:0,exB:0};K9.fold=M;
+        const fo=svFoldOpt;
+        svFoldOpt=function(z){const o=fo.apply(this,arguments);M.ex=0;M.exB=0;if(!narrow())return o;
+          const s=SV_SCALE*z/100,sp=o.spacingSystem||0;
+          if(sp>48){M.ex=(sp-48)*s/100*9+24;o.spacingSystem=48;o.pageHeight=Math.max(50,o.pageHeight-Math.round(M.ex*1.2*100/s))}
+          if((o.pageMarginBottom||0)>500){M.exB=(o.pageMarginBottom-500)*s/100;o.pageMarginBottom=500}
+          return o};
+        // 縮小して横1列のままのとき、手が止まって0.6秒後に折り返せるか決め直す（縮尺の表示が変わったのを見て動く）
+        {let zt=0,last=SV.zoom;const lab=scoreEl('svZoomLabel');
+          if(lab)new MutationObserver(()=>{const z=SV.zoom,was=last;last=z;if(!narrow()||!(z<was-.01))return;let n=0;const go=()=>{zt=0;try{
+            if(!SV.pages||!score.data||SV.fit||SV.tempFlow||SV.grab)return;
+            if(SV.planning){if(++n<20)zt=setTimeout(go,500);return}  // 並べ方の計算中（縮める途中の縮尺で始まったもの）が終わってから見る
+            if(SV.mode==='flow'&&K9.planZ!==SV.zoom&&svFoldMaybe(SV.zoom,svContentH())){K9.planZ=SV.zoom;svPlan({zoom:true})}
+          }catch(e){}};clearTimeout(zt);zt=setTimeout(go,600)}).observe(lab,{childList:true,characterData:true,subtree:true});}
+        const st=scoreEl('svStage');if(!st)return;
+        const desc=Object.getOwnPropertyDescriptor(Element.prototype,'innerHTML');
+        Object.defineProperty(st,'innerHTML',{configurable:true,get(){return desc.get.call(this)},set(v){desc.set.call(this,v);
+          try{
+            if(!narrow()||SV.mode==='flow'||!(M.ex>0||M.exB>0))return;
+            const svg=this.querySelector('svg');if(!svg)return;
+            const inner=svg.querySelector('svg.definition-scale')||svg,sys=[...inner.querySelectorAll('g.system')];if(sys.length<2)return;
+            const r=svg.getBoundingClientRect();if(!r.height)return;
+            const vb=inner.viewBox.baseVal,k=vb.height/r.height,ex=M.ex||0;
+            sys.forEach((g,j)=>{if(j)g.setAttribute('transform','translate(0,'+(j*ex*k)+')')});
+            const addPx=(sys.length-1)*ex+(M.exB||0);
+            inner.setAttribute('viewBox',vb.x+' '+vb.y+' '+vb.width+' '+(vb.height+addPx*k));
+            if(inner!==svg){const ih=parseFloat(inner.getAttribute('height'));if(ih)inner.setAttribute('height',ih*(vb.height+addPx*k)/vb.height)}
+            const H=parseFloat(svg.getAttribute('height')),ovb=svg.viewBox&&svg.viewBox.baseVal;
+            if(H){const nh=H*(r.height+addPx)/r.height;svg.setAttribute('height',nh);if(ovb&&ovb.height)svg.setAttribute('viewBox',ovb.x+' '+ovb.y+' '+ovb.width+' '+(ovb.height*nh/H))}
+          }catch(e){}
+        }});
+      }catch(e){console.error(e)}
+    },0);
   })();
 
 // Undo: one history for the whole app. Each settled change stores the state before it.
@@ -19172,7 +19599,7 @@ html body .mini-list[data-k1p] button.is-current{color:var(--k1-c)}
   document.getElementById('savedFile').addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';if(f)importSaved(f)});
   // The right pane's width is draggable and remembered per browser.
   const STAGE_KEY='violinLabStageWidth',stageShell=document.getElementById('shell'),stageResizer=document.getElementById('stageResizer');
-  const clampStage=w=>Math.round(Math.max(480,Math.min(innerWidth*.6,w)));
+  const clampStage=w=>Math.round(Math.max(document.body.classList.contains('k8-touch')?420:480,Math.min(innerWidth*.6,w))); // v149 改8：指の端末は420pxまで
   let stageWidth=null;
   function setStageWidth(w,save){
     stageWidth=w;
@@ -34320,6 +34747,80 @@ select:not([multiple]):not(#k48-none){appearance:none;-webkit-appearance:none;ba
     };
     const sr=scoreRefresh;
     scoreRefresh=function(){if(T.open&&score.data){T.pend=true;return}return sr.apply(this,arguments)};
+  }
+
+  // ===================== v149 改5: 楽譜を描き終わる前に「和声の流れ」を押すと、楽譜に戻したとき譜面が空になる不具合を直す =====================
+  // 改174 から：切り替えは、いまの楽譜の画面を裏に置いて入れ替える。描き終わる前に切り替えると、まだ空の画面が裏に置かれ、
+  // 戻しても描きかけの続きが止まったまま（「楽譜を描く準備をしています」の札も消える）だった。
+  // (1) 描き終わる前に「和声の流れ」が押されたら、描き終わるのを待ってから切り替える。待つ間は帯に2行で知らせ（見本2 案B）、
+  //     押した「和声の流れ」に点線の枠。待つ間に「楽譜」を押すと取りやめ。別のスコアを開いたときも取りやめ。
+  // (2) 保険：楽譜に戻したあと、譜面の枠が空で、描いている途中でもないときは、描き直す（いつもの札が出る）。
+  {
+    const K5={wait:null};
+    const k5Drawn=()=>{const st=scoreEl('svStage');return !!(score.data&&SV.pages&&SV.mode&&st&&st.querySelector('svg'))};
+    const k5Busy=()=>{const t=document.getElementById('u7Say');return !!(t&&!t.hidden&&t.dataset.wait==='1')};
+    const css=document.createElement('style');css.id='v149k5css';
+    css.textContent=`#scorePanel .k167-strip .chord-mode button[data-k167=flow].k5-pend{outline:2px dashed #b8641e;outline-offset:2px}
+#scorePanel .k167-d.k5-wait{color:#8a4a12}
+#scorePanel .k167-d .k5-two{display:flex;flex-direction:column;gap:1px}
+#scorePanel .k167-d .k5-two b{font-weight:800;color:#8a4a12}
+#scorePanel .k167-d .k5-two span{font-weight:600;color:#5b6563;font-size:11.5px}
+#scorePanel .k167-strip.k5-on #k167G{display:none}`;
+    document.head.appendChild(css);
+    const k5Look=()=>{
+      const s=document.getElementById('k167Strip');if(!s)return;
+      const on=!!K5.wait;s.classList.toggle('k5-on',on);
+      const fb=s.querySelector('[data-k167=flow]');if(fb)fb.classList.toggle('k5-pend',on);
+      const d=document.getElementById('k167D');if(!d)return;
+      if(on){
+        s.querySelectorAll('[data-k167]').forEach(b=>{b.disabled=false});
+        d.classList.add('k198-busy','k5-wait');
+        if(!d.querySelector('.k5-two'))d.innerHTML='<span class="k5-two"><b>楽譜を描き終えるまで、和声の流れには切り替えられません</b><span>描き終わると自動で切り替わります（大きな総譜では数秒）。「楽譜」を押すと取りやめます</span></span>';
+      }else if(d.classList.contains('k5-wait')){
+        d.classList.remove('k5-wait');if(!K167.loading)d.classList.remove('k198-busy');
+        if(d.querySelector('.k5-two'))d.textContent='';
+        try{ks5()}catch(e){}
+      }
+    };
+    const ks5=k167Strip;
+    k167Strip=function(){const r=ks5.apply(this,arguments);if(K5.wait)k5Look();return r};
+    const k5Stop=w=>{if(K5.wait===w){K5.wait=null;k5Look()}};
+    // (2) 保険
+    const k5Check=()=>setTimeout(()=>{
+      if(K167.mode!=='score'||K167.loading||!score.data||k5Drawn()||k5Busy()||SV.planning)return;
+      if(document.getElementById('shell').dataset.tab!=='score')return;
+      // 楽譜の文字（score.xml）まで残っていないときは、元のファイルから開き直す（場所と外した楽器は戻す）
+      if(typeof score.xml!=='string'&&score.buffer){
+        const buf=score.buffer,file=score.data.file,idx=score.index,off=[...(score.off||[])];
+        openScoreBuffer(buf,file).then(ok=>{if(!ok||!score.data)return;score.off=new Set(off.filter(p=>p<score.data.parts.length));score.index=Math.max(0,Math.min(idx,score.data.moments.length-1));score.sel=null;try{renderScore()}catch(e){}}).catch(()=>{});
+        return;
+      }
+      try{SV.frameVh=0;svFrameReset();svFrame();svLoad()}catch(e){}
+    },800);
+    const sm5=k167SetMode;
+    k167SetMode=async function(mode,opt){
+      if(K5.wait){
+        if(mode==='score'){const w=K5.wait;w.cancel=true;k5Stop(w)}
+        return;
+      }
+      if(mode==='flow'&&K167.mode==='score'&&!K167.loading&&score.data&&!k5Drawn()){
+        const w={cancel:false},data=score.data;K5.wait=w;k5Look();
+        while(!k5Drawn()){
+          await new Promise(r=>setTimeout(r,150));
+          if(w.cancel||score.data!==data||K167.mode!=='score'){k5Stop(w);return}
+        }
+        await new Promise(r=>setTimeout(r,300)); // 描き終わった直後の印・帯が付くのを待つ
+        if(w.cancel||score.data!==data||K167.mode!=='score'||!k5Drawn()){k5Stop(w);return}
+        K5.wait=null;k5Look();
+        return sm5.call(this,mode,opt);
+      }
+      const r=await sm5.apply(this,arguments);
+      if(mode==='score')k5Check();
+      return r;
+    };
+    // 別のスコアを開いたら、待っていた切り替えは取りやめ
+    const ob5=openScoreBuffer;
+    openScoreBuffer=async function(){if(K5.wait){const w=K5.wait;w.cancel=true;k5Stop(w)}return ob5.apply(this,arguments)};
   }
 })();
 </script>
